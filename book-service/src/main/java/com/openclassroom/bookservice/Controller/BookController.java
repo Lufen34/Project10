@@ -1,5 +1,6 @@
 package com.openclassroom.bookservice.Controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.openclassroom.bookservice.Model.Books;
@@ -24,18 +25,27 @@ public class BookController {
     }
     
     @RequestMapping(value = "book/publisher/{publisher}", method = RequestMethod.GET)
-    public Optional<Books> getBookByPublisher(@PathVariable(value = "publiser") String publiser) {
-        return bookService.findByTitle(publiser);
+    public Optional<Books> getBookByPublisher(@PathVariable(value = "publisher") String publisher) {
+        return bookService.findByPublisher(publisher);
     }
 
     @RequestMapping(value = "book/author/{author}", method = RequestMethod.GET)
     public Optional<Books> getBookByAuthor(@PathVariable(value = "author") String author) {
-        return bookService.findByTitle(author);
+        return bookService.findByAuthor(author);
     }
 
     @RequestMapping(value = "book/id/{id}", method = RequestMethod.GET)
     public Optional<Books> getBookById(@PathVariable(value = "id") String id) {
-        return bookService.findByTitle(id);
+        return bookService.findById(id);
+    }
+
+    @RequestMapping(value = "book/stock", method = RequestMethod.GET)
+    public List<Books> getBooksInStock() {
+        return bookService.inStock();
     }
     
+    @RequestMapping(value = "book", method = RequestMethod.GET)
+    public List<Books> getBooks() {
+        return bookService.findAllBooks();
+    }
 }

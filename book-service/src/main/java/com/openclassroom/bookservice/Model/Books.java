@@ -9,13 +9,19 @@ public class Books {
     private String author;
     private String publisher;
     private String title;
+    private int    stock;
 
 
     public Books() {
         // Empty because of container
     }
 
-    
+    public Books(String author, String publisher, String title) {
+        // testing purpose
+        this.author = author;
+        this.publisher = publisher;
+        this.title = title;
+    }
 
     public String getId() {
         return id;
@@ -48,9 +54,11 @@ public class Books {
         this.title = title;
     }
 
-    public Books(String author, String publisher, String title) {
-        this.author = author;
-        this.publisher = publisher;
-        this.title = title;
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }

@@ -1,5 +1,6 @@
 package com.openclassroom.bookservice.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.openclassroom.bookservice.Model.Books;
@@ -27,6 +28,14 @@ public class BookService {
 
     public Optional<Books> findById(String id) {
         return repository.findById(id);
+    }
+
+    public List<Books> findAllBooks(){
+        return repository.findAll();
+    }
+
+    public List<Books> inStock() {
+        return repository.hasInStock();
     }
 
     public void save(Books book) {
