@@ -8,9 +8,11 @@ import com.openclassroom.bookservice.Service.BookService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 @RequestMapping(value = "library/")
@@ -47,5 +49,15 @@ public class BookController {
     @RequestMapping(value = "book", method = RequestMethod.GET)
     public List<Books> getBooks() {
         return bookService.findAllBooks();
+    }
+
+    @RequestMapping(value = "book/delete/{id}", method = RequestMethod.GET)
+    public void deleteBookById(@PathVariable(name = "id") String id){
+        bookService.delete(bookService.findById(id).get());
+    }
+
+    @RequestMapping(value = "book/add", method = RequestMethod.POST)
+    public void addBook(@RequestBody Books book){
+        bookService.save(book);
     }
 }
