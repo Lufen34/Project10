@@ -14,7 +14,16 @@ public class UserService {
     public void save(User user){
         repository.save(user);
     }
+
     public void delete(User user){
         repository.delete(user);
+    }
+
+    public User findByNameLike(String name) {
+        return repository.findByNameLike(name);
+    }
+
+    public User findByName(String name) {
+        return repository.findByName(name);
     }
 }

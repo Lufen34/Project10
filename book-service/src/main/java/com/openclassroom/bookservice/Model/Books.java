@@ -12,9 +12,7 @@ public class Books {
     private int    stock;
 
 
-    public Books() {
-        // Empty because of container
-    }
+    public Books() {}
 
     public Books(String author, String publisher, String title) {
         // testing purpose

@@ -11,12 +11,14 @@ public class Loan {
     private Books   book;
     private boolean extended = false;
     private Date    date = new Date();
+    private User    user;
 
     public Loan() {
     }
     
-    public Loan(Books book) {
+    public Loan(Books book, User user) {
         this.book = book;
+        this.user = user;
     }
 
     public String getId() {
@@ -50,4 +52,13 @@ public class Loan {
     public void setExtended(boolean extended) {
         this.extended = extended;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }
