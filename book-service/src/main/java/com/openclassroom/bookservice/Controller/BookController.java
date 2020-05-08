@@ -1,5 +1,6 @@
 package com.openclassroom.bookservice.Controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,10 +12,12 @@ import com.openclassroom.bookservice.Service.UserService;
 import com.openclassroom.bookservice.Service.LoanService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
@@ -66,26 +69,51 @@ public class BookController {
     }
 
     @RequestMapping(value = "book/add", method = RequestMethod.POST)
-    public void addBook(@RequestBody Books book){
-        bookService.save(book);
+    public ResponseEntity<Books> addBook(@RequestBody Books book) {
+
+        if (book == null) {
+            return ResponseEntity.noContent().build();
+        }
+
+        if(bookService.findByTitle(book.getTitle()) == null)
+            bookService.save(book);
+
+        URI location = ServletUriComponentsBuilder
+                        .fromCurrentContextPath()
+                        .path("/{id}")
+                        .buildAndExpand(book.getId())
+                        .toUri();
+        return ResponseEntity.created(location).build();
     }
 
-    /**
-     * TO-DO : Check if user doesn't already exists in order to avoid duplicates inside the db
-     * @param bookId
-     * @param user
-     */
+    // TO-DO add a borrower only if the book is in stock (IF IT HIS the microservice's job) (should be the web app)
     @RequestMapping(value = "book/{bookId}/borrower/add", method = RequestMethod.POST)
-    public void addBorrower(@PathVariable(name="bookId") String bookId, @RequestBody User user){
+    public ResponseEntity<Loan> addBorrower(@PathVariable(name = "bookId") String bookId, @RequestBody User user) {
+        
+        if (user == null) {
+            return ResponseEntity.noContent().build();
+        }
+
+        if (userService.findByName(user.getName()) == null)
+            userService.save(user);
+        
         Loan loan = new Loan(bookService.findById(bookId).get(), user);
-        userService.save(user);
         loanService.save(loan);
+
+        URI location = ServletUriComponentsBuilder
+                            .fromCurrentContextPath()
+                            .path("/{id}")
+                            .buildAndExpand(loan.getId())
+                            .toUri();
+        return ResponseEntity.created(location).build();
     }
-    // Working fine (done by strict User name matching)
+
+    // Working fine (done by strict User name matching) and can delete only if one of the same entity exists.
     @RequestMapping(value = "book/{bookId}/borrower/delete", method = RequestMethod.POST)
     public void deleteBorrower(@PathVariable(name="bookId") String bookId, @RequestBody User user){
         loanService.delete(loanService.findByUser(user));
     }
+
     //TO-DO
     @RequestMapping(value = "book/{id}/borrower", method = RequestMethod.GET)
     public User getBookBorrower(User user){
