@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ClientApplication",
+            "request": "launch",
+            "mainClass": "com.openclassroom.client.ClientApplication",
+            "projectName": "client"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ClientApplication<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassroom.client.ClientApplication",
+            "projectName": "demo",
+            "args": ""
+        }
+    ]
+}

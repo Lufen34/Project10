@@ -11,8 +11,6 @@ import com.openclassroom.bookservice.Service.BookService;
 import com.openclassroom.bookservice.Service.UserService;
 import com.openclassroom.bookservice.Service.LoanService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 @RequestMapping(value = "library/")
 public class BookController {
-    //private static final Logger logger = LoggerFactory.getLogger(BookController.class);
     @Autowired
     private BookService bookService;
 

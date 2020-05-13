@@ -1,10 +1,10 @@
-package com.openclassroom.bookservice.Model;
+package com.openclassroom.client.BookServiceBeans;
 
-import org.springframework.data.mongodb.core.mapping.FieldType;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import java.io.Serializable;
 
-public class Books {
-    @MongoId(value = FieldType.OBJECT_ID)
+public class BooksBean implements Serializable
+{
+    private static final long serialVersionUID = 1L;
     private String id;
     private String author;
     private String publisher;
@@ -12,14 +12,8 @@ public class Books {
     private String isbn;
     private int    stock;
 
-
-    public Books() {}
-
-    public Books(String author, String publisher, String title) {
-        // testing purpose
-        this.author = author;
-        this.publisher = publisher;
-        this.title = title;
+    public BooksBean() {
+        // for container
     }
 
     public String getId() {
@@ -29,6 +23,7 @@ public class Books {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getAuthor() {
         return author;
     }
@@ -53,14 +48,6 @@ public class Books {
         this.title = title;
     }
 
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
     public String getIsbn() {
         return isbn;
     }
@@ -69,5 +56,14 @@ public class Books {
         this.isbn = isbn;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    
     
 }
