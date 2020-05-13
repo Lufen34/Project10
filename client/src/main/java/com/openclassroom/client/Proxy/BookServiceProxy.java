@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "book-service", url = "localhost:8082")
+@FeignClient(name = "book-service", url = "localhost:8082/library")
 public interface BookServiceProxy {
 
     @RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
