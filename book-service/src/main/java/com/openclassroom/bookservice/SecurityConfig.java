@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
        http
        			.csrf().disable()
-                .authorizeRequests()
+				.authorizeRequests()
 	                .antMatchers("/users")
 	                	.hasAnyAuthority(ERoles.USER.name(), ERoles.MODERATOR.name(), ERoles.ADMINISTRATOR.name())
 	                .antMatchers("/")
@@ -47,7 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	                	.permitAll()
 	                .anyRequest()
 	                	.hasAnyAuthority(ERoles.USER.name(), ERoles.MODERATOR.name(), ERoles.ADMINISTRATOR.name())
-	                .and()
+					.and()
+					/*.anyRequest()
+						.permitAll()
+						.and()*/
 	                .formLogin()
 	                	.defaultSuccessUrl("/")
 	                        .permitAll() 
