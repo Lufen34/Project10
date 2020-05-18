@@ -6,7 +6,7 @@ public class BooksBean implements Serializable
 {
     private static final long serialVersionUID = 1L;
     private String id;
-    private String author;
+    private String authors;
     private String publisher;
     private String title;
     private String isbn;
@@ -24,12 +24,12 @@ public class BooksBean implements Serializable
         this.id = id;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthors(String author) {
+        this.authors = author;
     }
 
     public String getPublisher() {

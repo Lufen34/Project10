@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>OPC Library</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
 </head>
 <body>
+    <div th:replace="frag/header :: header"> </div>
     <h1 align="center"> Here, the quick list of books </h1>
     <table align="center">
         <tr>
@@ -18,7 +20,7 @@
         </tr>
         <tr th:each="book : ${books}">
             <td th:text ="${book.id}">id</td>
-            <td th:text ="${book.author}">author</td>
+            <td th:text ="${book.authors}">authors</td>
             <td th:text ="${book.publisher}">publisher</td>
             <td th:text ="${book.title}">title</td>
             <td th:text ="${book.isbn}">isbn</td>

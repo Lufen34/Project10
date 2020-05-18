@@ -22,8 +22,8 @@ public class BookService {
         return repository.findByPublisher(publisher);
     }
 
-    public Optional<Books> findByAuthor(String author) {
-        return repository.findByAuthor(author);
+    public List<Books> findByAuthor(String author) {
+        return repository.findByAuthorsContaining(author);
     }
 
     public Optional<Books> findById(String id) {

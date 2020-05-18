@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+<head>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+</head>
+<body>
+        <div class="topnav">
+            <a class="active" href="/">Home</a>
+            <a href="/spots">Books</a>
+            <a href="/my_space">My space</a>
+            <a href="/register">Register</a>
+            <div class="login-container">
+                <form action="/login" method="post">
+                    <button type="submit">Login</button>
+                </form>
+                <form th:action="@{/logout}" method="post">
+				    <button type="submit">Logout</button>
+				</form>
+            </div>
+        </div>
+</body>
+</div>
+</html>

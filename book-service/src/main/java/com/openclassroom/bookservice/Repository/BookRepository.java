@@ -16,7 +16,9 @@ public interface BookRepository extends MongoRepository<Books, String> {
     public Optional<Books> findByPublisher(String publisher);
     public Optional<Books> findByTitle(String title);
     public Optional<Books> findById(String id);
-    public Optional<Books> findByAuthor(String author);
+    //@Query("{ authors: { $in: [ /.*?0.*/ ] } }")
+    //@Query("{ authors: /.*?0.*/ } ")
+    public List<Books> findByAuthorsContaining(String authors);
     @Query("{stock: {$gt: 0}}")
     public List<Books> hasInStock();
 }

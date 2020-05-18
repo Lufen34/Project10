@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.print.attribute.standard.Media;
+
 import com.openclassroom.bookservice.Model.Books;
 import com.openclassroom.bookservice.Model.Loan;
 import com.openclassroom.bookservice.Model.User;
@@ -12,6 +14,7 @@ import com.openclassroom.bookservice.Service.UserService;
 import com.openclassroom.bookservice.Service.LoanService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,8 +45,8 @@ public class BookController {
         return bookService.findByPublisher(publisher);
     }
 
-    @RequestMapping(value = "book/author/{author}", method = RequestMethod.GET)
-    public Optional<Books> getBookByAuthor(@PathVariable(value = "author") String author) {
+    @RequestMapping(value = "book/author/{author}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Books> getBookByAuthor(@PathVariable(value = "author") String author) {
         return bookService.findByAuthor(author);
     }
 

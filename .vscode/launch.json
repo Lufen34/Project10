@@ -16,6 +16,16 @@
             "mainClass": "com.openclassroom.client.ClientApplication",
             "projectName": "demo",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<book-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassroom.bookservice.Application",
+            "projectName": "book-service",
+            "args": ""
         }
     ]
 }
