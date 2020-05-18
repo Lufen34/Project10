@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>OPC Library</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
+<body>
+    <div th:replace="frag/header :: header"> </div>
+    <div th:replace="frag/search_bar_books :: search_bar_books"> </div>
+    <h1 align="center"> Books available: </h1>
+    <table align="center">
+        <tr>
+            <td>author</td>
+            <td>publisher</td>
+            <td>title</td>
+            <td>isbn</td>
+            <td>actions</td>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text ="${book.authors}">authors</td>
+            <td th:text ="${book.publisher}">publisher</td>
+            <td th:text ="${book.title}">title</td>
+            <td th:text ="${book.isbn}">isbn</td>
+            <td>
+                <a th:href="@{'/edit/book/' + ${book.id}}">Edit</a>
+                <a th:href="@{'/delete/book/' + ${book.id}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

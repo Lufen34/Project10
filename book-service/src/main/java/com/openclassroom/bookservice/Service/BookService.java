@@ -18,12 +18,20 @@ public class BookService {
         return repository.findByTitle(title);
     }
 
+    public Optional<Books> findByIsbn(String isbn) {
+        return repository.findByIsbn(isbn);
+    }
+
     public Optional<Books> findByPublisher(String publisher) {
         return repository.findByPublisher(publisher);
     }
 
-    public List<Books> findByAuthor(String author) {
-        return repository.findByAuthorsContaining(author);
+    public List<Books> findByAuthorsByKeyWord(String author) {
+        return repository.findByAuthorsByKeyWord(author);
+    }
+
+    public List<Books> findByTitleByKeyWord(String title) {
+        return repository.findByTitleByKeyWord(title);
     }
 
     public Optional<Books> findById(String id) {

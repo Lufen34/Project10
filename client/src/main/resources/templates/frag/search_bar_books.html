@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="search_bar_books">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"  href="/css/search_bar.css">
+</head>
+<body>
+    <div class="topnav">
+        <div class="search-container">
+            <form action="/books" method="get">
+                <input type="text"  name="param" placeholder="Search..">
+               	<button type="submit">Submit</button>
+                <div class="collapse" id="collapseFilter">
+                <h6>Filter by : </h6>
+                	<!-- Authors -->
+					<input type="checkbox" name="authors">
+					<label> Authors</label>
+	                
+	                <!-- title -->
+					<input type="checkbox" name="title">
+					<label> Title</label>
+	                
+	                <!-- isbn -->
+					<input type="checkbox" name="isbn">
+					<label> Isbn</label>
+            </form>
+        </div>
+    </div>
+</body>
+</div>
+</html>

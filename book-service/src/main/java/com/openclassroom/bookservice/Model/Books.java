@@ -10,7 +10,6 @@ public class Books {
     private String publisher;
     private String title;
     private String isbn;
-    private int    stock;
 
 
     public Books() {}
@@ -51,14 +50,6 @@ public class Books {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 
     public String getIsbn() {

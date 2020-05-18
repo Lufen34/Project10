@@ -1,6 +1,5 @@
 package com.openclassroom.client.BookServiceBeans;
 
-import java.util.Collection;
 
 
 public class UserBean {

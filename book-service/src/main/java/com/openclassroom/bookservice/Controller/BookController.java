@@ -35,9 +35,14 @@ public class BookController {
     @Autowired
     private LoanService loanService;
 
-    @RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
     public Optional<Books> getBookByTitle(@PathVariable(value = "title") String title) {
         return bookService.findByTitle(title);
+    }*/
+
+    @RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
+    public List<Books> getBookByTitleByKeyWord(@PathVariable(value = "title") String title) {
+        return bookService.findByTitleByKeyWord(title);
     }
     
     @RequestMapping(value = "book/publisher/{publisher}", method = RequestMethod.GET)
@@ -45,9 +50,14 @@ public class BookController {
         return bookService.findByPublisher(publisher);
     }
 
-    @RequestMapping(value = "book/author/{author}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Books> getBookByAuthor(@PathVariable(value = "author") String author) {
-        return bookService.findByAuthor(author);
+    @RequestMapping(value = "book/author/{authors}", method = RequestMethod.GET)
+    public List<Books> getBookByAuthorsByKeyWord(@PathVariable(value = "authors") String authors) {
+        return bookService.findByAuthorsByKeyWord(authors);
+    }
+
+    @RequestMapping(value = "book/isbn/{isbn}", method = RequestMethod.GET)
+    public Optional<Books> getBookByIsbn(@PathVariable(value = "isbn") String isbn) {
+        return bookService.findByIsbn(isbn);
     }
 
     @RequestMapping(value = "book/id/{id}", method = RequestMethod.GET)
@@ -130,4 +140,6 @@ public class BookController {
     public User getBookBorrower(User user){
         return loanService.findByUser(user).getUser();
     }
+
+
 }

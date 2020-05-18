@@ -7,29 +7,6 @@
 </head>
 <body>
     <div th:replace="frag/header :: header"> </div>
-    <h1 align="center"> Here, the quick list of books </h1>
-    <table align="center">
-        <tr>
-            <td>id</td>
-            <td>author</td>
-            <td>publisher</td>
-            <td>title</td>
-            <td>isbn</td>
-            <td>stock</td>
-            <td>actions</td>
-        </tr>
-        <tr th:each="book : ${books}">
-            <td th:text ="${book.id}">id</td>
-            <td th:text ="${book.authors}">authors</td>
-            <td th:text ="${book.publisher}">publisher</td>
-            <td th:text ="${book.title}">title</td>
-            <td th:text ="${book.isbn}">isbn</td>
-            <td th:text ="${book.stock}">stock</td>
-            <td>
-                <a th:href="@{'/edit/book/' + ${book.id}}">Edit</a>
-                <a th:href="@{'/delete/book/' + ${book.id}}">Delete</a>
-            </td>
-        </tr>
-    </table>
+    <h1 align="center"> Welcome to Openclassroom Library</h1>
 </body>
 </html>
