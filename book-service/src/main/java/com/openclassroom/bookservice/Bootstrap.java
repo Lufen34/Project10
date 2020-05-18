@@ -6,7 +6,6 @@ import java.util.List;
 import com.openclassroom.bookservice.Model.Authorities;
 import com.openclassroom.bookservice.Model.ERoles;
 import com.openclassroom.bookservice.Model.User;
-import com.openclassroom.bookservice.Service.AuthoritiesService;
 import com.openclassroom.bookservice.Service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 	@Autowired
     private UserService uService;
-    
-	@Autowired
-	private AuthoritiesService aService;
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
