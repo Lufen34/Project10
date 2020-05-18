@@ -60,7 +60,7 @@ public class UserBean implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
-        return true;
+        return null;
     }
 
     @Override

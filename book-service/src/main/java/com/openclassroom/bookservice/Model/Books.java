@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Books {
     @MongoId(value = FieldType.OBJECT_ID)
     private String id;
-    private String author;
+    private String authors;
     private String publisher;
     private String title;
     private String isbn;
@@ -15,9 +15,9 @@ public class Books {
 
     public Books() {}
 
-    public Books(String author, String publisher, String title) {
+    public Books(String authors, String publisher, String title) {
         // testing purpose
-        this.author = author;
+        this.authors = authors;
         this.publisher = publisher;
         this.title = title;
     }
@@ -29,12 +29,12 @@ public class Books {
     public void setId(String id) {
         this.id = id;
     }
-    public String getAuthor() {
-        return author;
+    public String getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthors(String author) {
+        this.authors = author;
     }
 
     public String getPublisher() {
