@@ -10,6 +10,8 @@ public class BooksBean implements Serializable
     private String publisher;
     private String title;
     private String isbn;
+    private int    stock;
+    private int    left; 
 
     public BooksBean() {
         // for container
@@ -54,5 +56,20 @@ public class BooksBean implements Serializable
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-    
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getLeft() {
+        return left;
+    }
+
+    public void setLeft(int left) {
+        this.left = left;
+    }
 }
