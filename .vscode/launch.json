@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ZuulServerApplication",
+            "request": "launch",
+            "mainClass": "com.openclassrooms.zuulserver.ZuulServerApplication",
+            "projectName": "zuul-server"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - EurekaServerApplication",
             "request": "launch",
             "mainClass": "com.openclassroom.eurekaserver.EurekaServerApplication",

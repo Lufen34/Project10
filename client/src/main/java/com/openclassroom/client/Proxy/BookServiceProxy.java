@@ -7,6 +7,7 @@ import com.openclassroom.client.BookServiceBeans.BooksBean;
 import com.openclassroom.client.BookServiceBeans.UserBean;
 import com.openclassroom.client.BookServiceBeans.LoanBean;
 
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "book-service", url = "localhost:8082/library")
+@FeignClient(name = "zuul-server")
+@RibbonClient(name = "book-service")
+@RequestMapping(value = "library/")
 public interface BookServiceProxy {
-
-    /*@RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
-    BooksBean getBookByTitle(@PathVariable(value = "title") String title);*/
 
     @RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
     List<BooksBean> getBookByTitleByKeyWord(@PathVariable(value = "title") String title);

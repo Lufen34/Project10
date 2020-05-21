@@ -24,7 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
-@RequestMapping(value = "library/")
+@RequestMapping(value = "library/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BookController {
     @Autowired
     private BookService bookService;
