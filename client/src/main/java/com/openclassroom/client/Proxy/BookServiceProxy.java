@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "zuul-server")
-@RibbonClient(name = "book-service")
-@RequestMapping(value = "library/")
+@FeignClient(name = "GATEWAY-SERVER")
+@RibbonClient(name = "BOOK-SERVICE")
+@RequestMapping(value = "BOOK-SERVICE/library")
 public interface BookServiceProxy {
 
     @RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
