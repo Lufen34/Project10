@@ -57,4 +57,7 @@ public interface BookServiceProxy {
     @RequestMapping(value = "book/{id}/borrower", method = RequestMethod.GET)
     UserBean getBookBorrower(UserBean user);
 
+    @RequestMapping(value = "book/login")
+    public String getLogin();
+
 }

@@ -9,5 +9,4 @@ public interface UserRepository extends MongoRepository<User, String> {
     @Query("{name: /?0/i}")
     public User findByNameLike(String name);
     public User findByName(String name);
-    public User findByLogin(String login);
 }

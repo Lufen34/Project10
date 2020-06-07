@@ -59,4 +59,9 @@ public class ClientController {
         resetFilterState();
         return "book";
     }
+
+    @RequestMapping("/login")
+    public String getLogin() {
+        return bookServiceProxy.getLogin();
+    }
 }

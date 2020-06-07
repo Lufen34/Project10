@@ -140,6 +140,4 @@ public class BookController {
     public User getBookBorrower(User user){
         return loanService.findByUser(user).getUser();
     }
-
-
 }
