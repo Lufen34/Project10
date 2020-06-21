@@ -1,5 +1,5 @@
 package com.openclassrooms.oauthserver.service;
-/*
+
 import com.openclassrooms.oauthserver.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,4 +22,4 @@ public class AccountDetailsServiceImpl implements UserDetailsService {
         }
         return user;
     }
-}*/
+}

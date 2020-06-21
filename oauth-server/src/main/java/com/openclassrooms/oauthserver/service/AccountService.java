@@ -1,5 +1,5 @@
 package com.openclassrooms.oauthserver.service;
-/*
+
 import com.openclassrooms.oauthserver.model.Account;
 import com.openclassrooms.oauthserver.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +28,9 @@ public class AccountService {
     public Account findByLogin(String login) {
         return repository.findByLogin(login);
     }
-}*/
+
+    public AccountRepository getRepository() {
+        return repository;
+    }
+
+}

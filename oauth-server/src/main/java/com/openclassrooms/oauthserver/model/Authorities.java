@@ -38,6 +38,13 @@ public class Authorities implements GrantedAuthority {
 	}
 
 	@Override
+	public String toString() {
+		return "Authorities{" +
+				"authority='" + authority + '\'' +
+				'}';
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
