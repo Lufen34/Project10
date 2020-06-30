@@ -10,8 +10,8 @@
         <module name="eureka-server" />
         <module name="book-service" />
         <module name="config-server" />
-        <module name="gateway-server" />
         <module name="oauth-server" />
+        <module name="gateway-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
