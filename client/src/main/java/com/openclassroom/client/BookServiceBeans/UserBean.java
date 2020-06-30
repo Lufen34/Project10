@@ -1,6 +1,8 @@
 package com.openclassroom.client.BookServiceBeans;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserBean {
     private static final long serialVersionUID = -2777427344548523655L;

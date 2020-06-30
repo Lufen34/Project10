@@ -53,7 +53,7 @@ public class LoanBean {
     }
 
     public LoanBean() {
-        // container
+        extended = false;
     }
 
     

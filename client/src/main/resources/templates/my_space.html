@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My_space</title>
+    <link rel="stylesheet" href="/css/space.css">
+</head>
+<body>
+<div th:replace="fragment/header :: header"> </div>
+<h1 align="center"> Here, the list of your topo </h1>
+<div class="tab">
+    <table align="center">
+        <tr>
+            <td>title</td>
+            <td>Authors</td>
+            <td>Publisher</td>
+            <td>Isbn</td>
+            <td>Actions</td>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text ="${book.title}">Title</td>
+            <td th:text ="${book.authors}">Authors</td>
+            <td th:text ="${book.publisher}">Publisher</td>
+            <td th:text="${book.isbn}">Isbn</td>
+            <td>
+                <a th:href="@{'/edit/topo/' + ${book.id}}">Edit</a>
+                <a th:href="@{'/delete/topo/' + ${book.id}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--
+<fieldset class="comments">
+    <legend>your rented topo:</legend>
+    <table>
+        <tr th:each="rt : ${rented_topos}">
+            <td th:text="${rt.id}">id</td>
+            <td th:text ="${rt.spot.address}">spot</td>
+            <td th:text ="${rt.cotation}">cotation</td>
+            <td th:text ="${rt.sector.name}">sector</td>
+            <td th:text ="${rt.spitAmount}">spits_amount</td>
+            <td th:text="${rt.lendable}">lendable</td>
+            <td th:text="${rt.reserved}">reserved</td>
+            <td>
+                <a th:href="@{'/my_space/topo/cancel/' + ${rt.id}}">end reservation</a>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<fieldset class="comments">
+    <legend>reservation box:</legend>
+    <table>
+        <tr th:each="res : ${reservations}">
+            <td th:text ="${res.user.accountName} + ':  asked for a reservations of : ' + ${res.topo.spot.address} + ' \'s topo ' ">owner</td>
+            <td><a th:href="@{'/my_space/topo/allow/' + ${res.id}}">Allow</a></td>
+            <td><a th:href="@{'/my_space/topo/deny/' + ${res.id}}">Deny</a></td>
+        </tr>
+    </table>
+</fieldset>
+-->
+</body>
+</html>

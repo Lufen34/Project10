@@ -3,11 +3,18 @@ package com.openclassroom.bookservice.Model;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     @MongoId(targetType = FieldType.OBJECT_ID)
     private String id;
     private String name;
     private String address;
+    private String email;
+
+
+    private List<Loan> rented = new ArrayList<>();
 
     public User() {
     }
@@ -42,4 +49,19 @@ public class User {
         this.address = address;
     }
 
+    public List<Loan> getRented() {
+        return rented;
+    }
+
+    public void setRented(List<Loan> rented) {
+        this.rented = rented;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

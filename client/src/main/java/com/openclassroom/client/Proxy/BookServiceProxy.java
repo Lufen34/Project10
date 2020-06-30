@@ -11,10 +11,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "GATEWAY-SERVER", contextId = "BOOK-SERVICE")
 @RibbonClient(name = "BOOK-SERVICE")
@@ -56,4 +53,7 @@ public interface BookServiceProxy {
 
     @RequestMapping(value = "book/{id}/borrower", method = RequestMethod.GET)
     UserBean getBookBorrower(UserBean user);
+
+    @PostMapping(value = "/reserve")
+    ResponseEntity<String> registerLoan(@RequestBody LoanBean loan);
 }
