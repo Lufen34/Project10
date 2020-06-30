@@ -34,6 +34,7 @@ public class databootstrap implements ApplicationListener<ContextRefreshedEvent>
         test.setRole(ERoles.USER);
         test.setAddress("we don't care");
         test.getAuthorities().add(auth);
+        test.setEmail("test@gmail.com");
         if (accountService.findByLogin(test.getLogin()) == null)
             accountService.save(test);
     }

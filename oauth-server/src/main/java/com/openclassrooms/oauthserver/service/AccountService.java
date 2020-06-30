@@ -33,4 +33,7 @@ public class AccountService {
         return repository;
     }
 
+    public Account findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
 }

@@ -9,4 +9,5 @@ public interface AccountRepository extends MongoRepository<Account, String> {
     public Account findByNameLike(String name);
     public Account findByName(String name);
     public Account findByLogin(String login);
+    public Account findByEmail(String email);
 }

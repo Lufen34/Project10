@@ -1,21 +1,32 @@
 package com.openclassroom.client.Controller;
 
+import com.openclassroom.client.BookServiceBeans.UserBean;
 import com.openclassroom.client.Proxy.BookServiceProxy;
 
+import com.openclassroom.client.Proxy.OAuthServerProxy;
+import com.openclassroom.client.utilities.CookieUtility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
 public class ClientController {
-
     @Autowired
     private BookServiceProxy bookServiceProxy;
+
+   @Autowired
+    private OAuthServerProxy oAuthServerProxy;
+
+    private static Logger logger = LoggerFactory.getLogger(ClientController.class);
 
     private boolean isFilteredByAuthor;
     private boolean isFilteredByTitle;
@@ -60,8 +71,58 @@ public class ClientController {
         return "book";
     }
 
-    @RequestMapping("/login")
-    public String getLogin() {
-        return bookServiceProxy.getLogin();
+    @RequestMapping(value = "/login")
+    public String Login(HttpServletResponse httpServletResponse, Model model, @ModelAttribute("user") UserBean userBean){
+
+        ResponseEntity responseEntity = null;
+        /*logger.warn("==========================================");
+        logger.warn(userBean.toString());
+        logger.warn("==========================================");*/
+        if (userBean.getPassword() != null || userBean.getLogin() != null) {
+            try{
+                responseEntity = oAuthServerProxy.login(userBean);
+            }catch (Exception e){
+                logger.warn("==========================================");
+                logger.warn("Unable to login to OAUTH-SERVER");
+                logger.warn("==========================================");
+                e.printStackTrace();
+                return "login_wrong";
+            }
+            String token = responseEntity.getHeaders().getFirst("Authorization").replace("Bearer ", "");
+            Cookie cookie = CookieUtility.generateCookie(token);
+            httpServletResponse.addCookie(cookie);
+            return "redirect:/";
+        }
+        return "login";
+    }
+
+    @PostMapping(value = "/logout")
+    public String Logout(HttpServletResponse response){
+        CookieUtility.clearCookie(response);
+        return "index";
+    }
+
+    @GetMapping(value = "/register")
+    public String register(Model model) {
+        model.addAttribute("user", new UserBean());
+        return "register";
+    }
+
+    @PostMapping(value = "/register")
+    public String register(Model model, @ModelAttribute("user") UserBean userBean) {
+        logger.warn("=============================");
+        logger.warn(userBean.toString());
+        logger.warn("=============================");
+        logger.warn("SENDING NOW TO OAUTHSERVER");
+        try {
+            oAuthServerProxy.register(userBean);
+        }catch (Exception e) {
+            e.printStackTrace();
+            logger.warn("=============================");
+            logger.warn("=============================");
+            return "register_wrong";
+        }
+
+        return "index";
     }
 }

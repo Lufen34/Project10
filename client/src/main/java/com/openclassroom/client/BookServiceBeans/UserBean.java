@@ -6,6 +6,7 @@ public class UserBean {
     private static final long serialVersionUID = -2777427344548523655L;
     private String id;
     private String name;
+    private String email;
     private String address;
     private String login;
     private String password;
@@ -52,5 +53,24 @@ public class UserBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

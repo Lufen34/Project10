@@ -19,6 +19,7 @@ public class Account implements UserDetails {
     private String name;
     private String address;
     private String login;
+    private String email;
     private String password;
     private ERoles role;
 
@@ -76,16 +77,6 @@ public class Account implements UserDetails {
 
     @Override
     public List<Authorities> getAuthorities() {
-        /*List<String> authoritiesList = new ArrayList<>();
-        for (GrantedAuthority authority : authorities) {
-            authoritiesList.add(authority.getAuthority());
-        }
-        List<GrantedAuthority> authorities2 = new ArrayList<>();
-        authoritiesList.forEach(p -> {
-            GrantedAuthority authority = new SimpleGrantedAuthority(p);
-            authorities.add((Authorities)authority);
-        });
-        return authorities2;*/
         return authorities;
     }
 
@@ -126,19 +117,25 @@ public class Account implements UserDetails {
         return serialVersionUID;
     }
 
-
-    /*public List<String> getRoleList(){
-        if(this.roles.length() > 0){
-            return Arrays.asList(this.roles.split(","));
-        }
-        return new ArrayList<>();
+    public String getEmail() {
+        return email;
     }
 
-    public List<String> getPermissionList(){
-        if(this.permissions.length() > 0){
-            return Arrays.asList(this.permissions.split(","));
-        }
-        return new ArrayList<>();
-    }*/
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", authorities=" + authorities +
+                '}';
+    }
 }

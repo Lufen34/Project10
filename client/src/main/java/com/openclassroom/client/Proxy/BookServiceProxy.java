@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "GATEWAY-SERVER")
+@FeignClient(name = "GATEWAY-SERVER", contextId = "BOOK-SERVICE")
 @RibbonClient(name = "BOOK-SERVICE")
 @RequestMapping(value = "BOOK-SERVICE/library")
 public interface BookServiceProxy {
@@ -56,8 +56,4 @@ public interface BookServiceProxy {
 
     @RequestMapping(value = "book/{id}/borrower", method = RequestMethod.GET)
     UserBean getBookBorrower(UserBean user);
-
-    @RequestMapping(value = "book/login")
-    public String getLogin();
-
 }
