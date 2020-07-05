@@ -174,7 +174,12 @@ public class ClientController {
         loan.setDate(new Date());
         logger.warn("=============================");
         logger.warn("=============================");
-        bookServiceProxy.registerLoan(loan);
-        return "book";
+        try {
+            bookServiceProxy.registerLoan(loan);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "already_loaned";
+        }
+        return "successful_reserve";
     }
 }
