@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MySpace {
     @GetMapping("/my_space")
     public String getSpace(){
-        return"";
+        return"my_space";
     }
 }

@@ -111,7 +111,7 @@ public class ClientController {
     @PostMapping(value = "/logout")
     public String Logout(HttpServletResponse response){
         CookieUtility.clearCookie(response);
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping(value = "/register")
@@ -167,13 +167,9 @@ public class ClientController {
 
         ubm = temp.getBody();
 
-        logger.warn("=============================");
-        logger.warn("=============================");
         loan.setBook(book);
         loan.setUser(ubm);
         loan.setDate(new Date());
-        logger.warn("=============================");
-        logger.warn("=============================");
         try {
             bookServiceProxy.registerLoan(loan);
         } catch (Exception e) {
