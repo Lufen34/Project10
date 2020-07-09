@@ -27,7 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.SecurityContext;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 @Controller
@@ -169,7 +171,10 @@ public class ClientController {
 
         loan.setBook(book);
         loan.setUser(ubm);
-        loan.setDate(new Date());
+        loan.setBegin(new GregorianCalendar());
+        GregorianCalendar end = new GregorianCalendar();
+        end.add(Calendar.DAY_OF_MONTH, 14);
+        loan.setEnd(end);
         try {
             bookServiceProxy.registerLoan(loan);
         } catch (Exception e) {

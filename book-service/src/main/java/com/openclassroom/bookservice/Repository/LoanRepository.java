@@ -1,5 +1,6 @@
 package com.openclassroom.bookservice.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.openclassroom.bookservice.Model.Books;
@@ -15,4 +16,6 @@ public interface LoanRepository extends MongoRepository<Loan, String> {
     // '' needed for nested fields
     @Query("{'user.name': ?0}")
     public Loan findByUser(String username);
+    @Query("{'user.email' : ?0}")
+    public List<Loan> findAllLoanFromUserByEmail(String name);
 }

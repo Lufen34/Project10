@@ -1,6 +1,8 @@
 package com.openclassroom.bookservice.Model;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -10,7 +12,8 @@ public class Loan {
     private String  id;
     private Books   book;
     private boolean extended = false;
-    private Date    date = new Date();
+    private GregorianCalendar begin;
+    private GregorianCalendar end;
     private User    user;
 
     public Loan() {
@@ -25,12 +28,20 @@ public class Loan {
         return id;
     }
 
-    public Date getDate() {
-        return date;
+    public GregorianCalendar getBegin() {
+        return begin;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBegin(GregorianCalendar begin) {
+        this.begin = begin;
+    }
+
+    public GregorianCalendar getEnd() {
+        return end;
+    }
+
+    public void setEnd(GregorianCalendar end) {
+        this.end = end;
     }
 
     public Books getBook() {

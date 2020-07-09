@@ -1,16 +1,19 @@
 package com.openclassroom.client.BookServiceBeans;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class LoanBean {
     private String      id;
     private BooksBean   book;
     private boolean     extended;
-    private Date        date;
+    private GregorianCalendar begin;
+    private GregorianCalendar end;
     private UserBean    user;
 
-
-
+    public LoanBean() {
+        extended = false;
+    }
     
     public String getId() {
         return id;
@@ -36,13 +39,6 @@ public class LoanBean {
         this.extended = extended;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public UserBean getUser() {
         return user;
@@ -52,9 +48,19 @@ public class LoanBean {
         this.user = user;
     }
 
-    public LoanBean() {
-        extended = false;
+    public GregorianCalendar getBegin() {
+        return begin;
     }
 
-    
+    public void setBegin(GregorianCalendar begin) {
+        this.begin = begin;
+    }
+
+    public GregorianCalendar getEnd() {
+        return end;
+    }
+
+    public void setEnd(GregorianCalendar end) {
+        this.end = end;
+    }
 }

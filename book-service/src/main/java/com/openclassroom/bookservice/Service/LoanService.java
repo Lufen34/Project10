@@ -1,5 +1,6 @@
 package com.openclassroom.bookservice.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.openclassroom.bookservice.Model.Books;
@@ -33,5 +34,9 @@ public class LoanService {
 
     public Loan findByUser(User user) {
         return repository.findByUser(user.getName());
+    }
+
+    public List<Loan> findAllLoanFromUser(String user) {
+        return repository.findAllLoanFromUserByEmail(user);
     }
 }

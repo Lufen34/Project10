@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    @MongoId(targetType = FieldType.OBJECT_ID)
     private String id;
     private String name;
     private String address;

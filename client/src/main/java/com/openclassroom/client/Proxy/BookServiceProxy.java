@@ -56,4 +56,7 @@ public interface BookServiceProxy {
 
     @PostMapping(value = "/reserve")
     ResponseEntity<String> registerLoan(@RequestBody LoanBean loan);
+
+    @RequestMapping(value = "/loans", method = RequestMethod.POST)
+    ResponseEntity<List<LoanBean>> getLoans(@RequestBody String login);
 }

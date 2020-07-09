@@ -10,7 +10,7 @@ import com.openclassroom.bookservice.Model.Books;
 import com.openclassroom.bookservice.Model.Loan;
 import com.openclassroom.bookservice.Model.User;
 import com.openclassroom.bookservice.Service.BookService;
-import com.openclassroom.bookservice.Service.UserService;
+//import com.openclassroom.bookservice.Service.UserService;
 import com.openclassroom.bookservice.Service.LoanService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BookController {
     @Autowired
     private BookService bookService;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private LoanService loanService;
@@ -101,7 +98,7 @@ public class BookController {
     }
 
     // TO-DO add a borrower only if the book is in stock (IF IT HIS the microservice's job) (should be the web app)
-    @RequestMapping(value = "book/{bookId}/borrower/add", method = RequestMethod.POST)
+    /*@RequestMapping(value = "book/{bookId}/borrower/add", method = RequestMethod.POST)
     public ResponseEntity<Loan> addBorrower(@PathVariable(name = "bookId") String bookId, @RequestBody User user) {
         Loan loan;
         if (user == null) {
@@ -127,7 +124,7 @@ public class BookController {
             return ResponseEntity.badRequest().build();
         }
     }
-
+*/
     // Working fine (done by strict User name matching) and can delete only if one of the same entity exists.
     @RequestMapping(value = "book/{bookId}/borrower/delete", method = RequestMethod.POST)
     public void deleteBorrower(@RequestBody User user){
