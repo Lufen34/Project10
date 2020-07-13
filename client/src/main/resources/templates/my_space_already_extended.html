@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My_space</title>
-    <link rel="stylesheet" href="/css/space.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 <div th:replace="frag/header :: header"> </div>
@@ -26,6 +26,11 @@
             <td th:text="${loan.end.getTime().toGMTString()}">end</td>
             <td>
                 <a th:href="@{'/loan/extend/' + ${loan.id}}">Extend</a>
+            </td>
+            <td>
+                <div class="wrong">
+                    <p> Already extended once.</p>
+                </div>
             </td>
         </tr>
     </table>

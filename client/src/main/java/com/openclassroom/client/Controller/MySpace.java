@@ -11,11 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -46,5 +45,44 @@ public class MySpace {
 
         model.addAttribute("loans", loans);
         return"my_space";
+    }
+
+    @GetMapping("/my_space_already_extended")
+    public String getSpaceExtendedError(Model model, @CookieValue("access_token") Cookie cookie){
+        String login = CookieUtility.getLoginFromJWT(cookie.getValue());
+
+        ResponseEntity<UserBookModel> res = oAuthServerProxy.getAccountByLogin(login);
+
+        UserBookModel user = res.getBody();
+
+        logger.warn("=====================================");
+        logger.warn(user.getEmail());
+        logger.warn("=====================================");
+
+        ResponseEntity<List<LoanBean>> response = bookServiceProxy.getLoans(user.getEmail());
+        List<LoanBean> loans = response.getBody();
+
+        model.addAttribute("loans", loans);
+        return"my_space_already_extended";
+    }
+
+    @GetMapping("/loan/extend/{id}")
+    public String extendLoan(@PathVariable("id")String id) {
+        logger.warn("======================");
+        logger.warn(bookServiceProxy.getLoan(id).toString());
+        logger.warn("======================");
+
+        ResponseEntity<LoanBean> res  = bookServiceProxy.getLoan(id);
+        LoanBean loan = res.getBody();
+
+        if (!loan.isExtended()) {
+            loan.getEnd().add(Calendar.DAY_OF_MONTH, 14);
+            loan.setExtended(true);
+            bookServiceProxy.updateLoan(loan);
+            return "redirect:/my_space";
+        }
+        else {
+            return "redirect:/my_space_already_extended";
+        }
     }
 }

@@ -39,4 +39,8 @@ public class LoanService {
     public List<Loan> findAllLoanFromUser(String user) {
         return repository.findAllLoanFromUserByEmail(user);
     }
+
+    public void deleteById(String id) {
+        repository.deleteById(id);
+    }
 }

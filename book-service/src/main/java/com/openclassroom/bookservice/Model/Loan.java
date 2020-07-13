@@ -24,6 +24,15 @@ public class Loan {
         this.user = user;
     }
 
+    public Loan(String id, Books book, boolean extended, GregorianCalendar begin, GregorianCalendar end, User user) {
+        this.id = id;
+        this.book = book;
+        this.extended = extended;
+        this.begin = begin;
+        this.end = end;
+        this.user = user;
+    }
+
     public String getId() {
         return id;
     }

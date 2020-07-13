@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface LoanRepository extends MongoRepository<Loan, String> {
     public Optional<Loan> findById(String id);
+    public void deleteById(String id);
     public Loan findByBook(Books book);
     // '' needed for nested fields
     @Query("{'user.name': ?0}")
