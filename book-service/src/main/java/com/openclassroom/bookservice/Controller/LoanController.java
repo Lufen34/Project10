@@ -46,4 +46,9 @@ public class LoanController {
         loanService.save(loan);
         return new ResponseEntity<>("Successfully updated", HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/loans/all", method = RequestMethod.POST)
+    public List<Loan> getALlLoans(){
+        return loanService.findAll();
+    }
 }

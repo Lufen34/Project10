@@ -43,4 +43,8 @@ public class LoanService {
     public void deleteById(String id) {
         repository.deleteById(id);
     }
+
+    public List<Loan> findAll() {
+        return repository.findAll();
+    }
 }
