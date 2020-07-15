@@ -12,6 +12,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -23,6 +25,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableFeignClients("com.openclassrom.batchservice")
+@EnableScheduling
 @EnableEurekaClient
 public class BatchServiceApplication implements CommandLineRunner {
 
@@ -54,11 +57,12 @@ public class BatchServiceApplication implements CommandLineRunner {
 		return loanToRemind;
 	}
 
-	public void ReminderMessage(String email) throws MessagingException {
+	@Scheduled(fixedRate = 2000)
+	public void ReminderMessage() throws MessagingException { // Il faut Dé-commenter le code dans run et ajouter un param String Email lorsque la demonstration sera fini
 		MimeMessage mailMessage = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true);;
 		//SimpleMailMessage mailMessage = new SimpleMailMessage();
-		helper.setTo("lufen34@gmail.com"); // remplacer avec l'argument EMAIL, ici hardcoded pour la démonstration.
+		helper.setTo("project7school@outlook.com"); // remplacer avec l'argument EMAIL, ici hardcoded pour la démonstration.
 		helper.setSubject("Openclassroom Library Reminder");
 		helper.setFrom("project7school@outlook.com");
 		helper.setText("Dear user,\n\n" +
@@ -72,9 +76,9 @@ public class BatchServiceApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		List<LoanBean>  loanToRemind = listOfLoanToRemind();
 		System.out.println("Sending Email...");
-		for (LoanBean loan: loanToRemind) {
+		/*for (LoanBean loan: loanToRemind) {
 			ReminderMessage(loan.getUser().getEmail()); // argument avec le mail
-		}
+		}*/
 		System.out.println("Done");
 	}
 }
