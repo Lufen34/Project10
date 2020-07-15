@@ -57,7 +57,7 @@ public class BatchServiceApplication implements CommandLineRunner {
 		return loanToRemind;
 	}
 
-	@Scheduled(fixedRate = 2000)
+	@Scheduled(fixedRate = 2000) // envoie de mail tout les 2 secondes, on peut changer le paramètre en la valeur que l'on souhaite
 	public void ReminderMessage() throws MessagingException { // Il faut Dé-commenter le code dans run et ajouter un param String Email lorsque la demonstration sera fini
 		MimeMessage mailMessage = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true);;

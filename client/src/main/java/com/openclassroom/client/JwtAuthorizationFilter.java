@@ -5,9 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.openclassroom.client.Controller.ClientController;
-import com.openclassrooms.oauthserver.model.Account;
-import com.openclassrooms.oauthserver.security.JwtProperties;
-import com.openclassrooms.oauthserver.service.AccountService;
+import com.openclassroom.client.utilities.JwtProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +29,6 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
-    @Autowired
-    private AccountService accountService;
 
     private static Logger logger = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
 
