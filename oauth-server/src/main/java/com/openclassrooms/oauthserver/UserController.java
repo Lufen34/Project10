@@ -31,20 +31,6 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody Account account) {
-        /*logger.warn("XXXXXXXX==========================================");
-        logger.warn(account.toString());
-        logger.warn("XXXXXXXX==========================================");*/
-        /*if (accountService.findByLogin(account.getLogin()) == null && accountService.findByEmail(account.getEmail()) == null) {
-            logger.warn("==========================================");
-            logger.warn(account.toString());
-            logger.warn("==========================================");
-            account.setRole(ERoles.USER);
-            account.getAuthorities().add(new Authorities(ERoles.USER));
-            account.setPassword(passwordEncoder.encode(account.getPassword()));
-            accountService.save(account);
-            return new ResponseEntity<>("Successfully registered", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Login or Email already exists.", HttpStatus.BAD_REQUEST);*/
         try {
             logger.warn("==========================================");
             logger.warn(account.toString());

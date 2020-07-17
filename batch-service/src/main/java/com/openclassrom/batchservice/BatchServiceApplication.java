@@ -62,11 +62,11 @@ public class BatchServiceApplication implements CommandLineRunner {
 		MimeMessage mailMessage = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true);;
 		//SimpleMailMessage mailMessage = new SimpleMailMessage();
-		helper.setTo("project7school@outlook.com"); // remplacer avec l'argument EMAIL, ici hardcoded pour la démonstration.
+		helper.setTo("lufen34@gmail.com"); // remplacer avec l'argument EMAIL, ici hardcoded pour la démonstration.
 		helper.setSubject("Openclassroom Library Reminder");
 		helper.setFrom("project7school@outlook.com");
 		helper.setText("Dear user,\n\n" +
-				"We would like to remind you that the end of your periode of borrowing is about to reach.\n"+
+				"We would like to remind you that the end of your period of borrowing is about to reach.\n"+
 				"You can choose to extend your loan, in other case you are invited to return the book at the date mentionned in your personnal space.\n\n\n" +
 				"Fondly yours, the OPC Library team.", true);
 		javaMailSender.send(mailMessage);

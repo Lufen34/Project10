@@ -15,7 +15,7 @@ Everything is pre-configured in the Docker.
 import the docker container with the following command :
 
 ```bash
-sudo tar -c . | docker import - exampleimagedir
+sudo tar -c . | docker import - project7
 ```
 
 
@@ -23,8 +23,16 @@ sudo tar -c . | docker import - exampleimagedir
 then in a terminal use the following command to connect to the docker :
 
 ```bash
+sudo docker start openclassroom_library
+```
+
+then
+
+```bash
 sudo docker exec -it openclassroom_library bash
 ```
+
+inside /home/Project7 use git pull in order to verify if project is updated.
 
 How to deploy :
 
@@ -49,3 +57,6 @@ Please make sure to execute them in the following order :
 7. Batch-service
 
 ***Make sure that each service has finished to initialize before running the next one.***
+
+https://github.com/Lufen34/Project7-config-repo 
+https://github.com/Lufen34/Project7/
