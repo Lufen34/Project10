@@ -51,3 +51,4 @@ Please make sure to execute them in the following order :
 ***Make sure that each service has finished to initialize before running the next one.***
 
 https://github.com/Lufen34/Project7-config-repo
+https://github.com/Lufen34/Project7/
