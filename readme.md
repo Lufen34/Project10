@@ -49,3 +49,5 @@ Please make sure to execute them in the following order :
 7. Batch-service
 
 ***Make sure that each service has finished to initialize before running the next one.***
+
+https://github.com/Lufen34/Project7-config-repo
