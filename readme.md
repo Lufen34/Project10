@@ -58,9 +58,7 @@ Please make sure to execute them in the following order :
 
 ***Make sure that each service has finished to initialize before running the next one.***
 
-<<<<<<< HEAD
+HEAD
 https://github.com/Lufen34/Project7-config-repo 
-=======
-https://github.com/Lufen34/Project7-config-repo
->>>>>>> 05c20a27db8c9da29b7a418e86711f50e6aa00de
+
 https://github.com/Lufen34/Project7/
