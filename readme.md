@@ -12,6 +12,14 @@ Everything is pre-configured in the Docker.
 
 ## Usage (Docker) :
 
+Because of Github and Openclassroom filesize limitation you will have to download the image file here :
+
+```
+https://mega.nz/file/kZ0VBJaT#jnkKWtzueVknPyEJhmoh1LiHJKQen76fkfFCYShOgmY
+```
+
+
+
 import the docker container with the following command :
 
 ```bash
