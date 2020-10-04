@@ -1,0 +1,12 @@
+
+ƒ
+java:S1128"jRemove this unused import 'org.springframework.security.web.authentication.www.BasicAuthenticationFilter'.(çìóÕûÿÿÿÿ
+F
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+l
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡ž¸Îùÿÿÿÿ
+•
+java:S1128"€Remove this unused import 'org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder'.(£ØÓ‰
+…
+java:S1128"qRemove this unused import 'org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter'.(÷ìïŠ
+O	java:S125"<This block of commented-out lines of code should be removed.(œŸïÊ

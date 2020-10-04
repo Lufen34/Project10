@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="batch-service" />
+        <module name="client" />
         <module name="eureka-server" />
         <module name="book-service" />
-        <module name="config-server" />
-        <module name="client" />
-        <module name="gateway-server" />
+        <module name="batch-service" />
         <module name="oauth-server" />
+        <module name="config-server" />
+        <module name="gateway-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -1,0 +1,14 @@
+
+‘
+java:S1192g"vDefine a constant instead of duplicating this literal "=====================================================" 8 times.(İÄ×ÿÿÿÿÿ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+l
+java:S1128"QRemove this unused import 'com.openclassroom.client.Controller.ClientController'.(„úŠšÿÿÿÿÿ
+n
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ
+M
+java:S2387!"7"logger" is the name of a field in "GenericFilterBean".(ÿ±®°
+V	java:S125-"<This block of commented-out lines of code should be removed.(ğœÕÄıÿÿÿÿ
+Q	java:S1255"<This block of commented-out lines of code should be removed.(¥†éÌ
+V	java:S125X"<This block of commented-out lines of code should be removed.(§®ÖĞşÿÿÿÿ
