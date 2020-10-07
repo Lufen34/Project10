@@ -27,7 +27,8 @@
             <td th:text ="${book.stock}">stock</td>
             <td th:text ="${book.left}">left</td>
             <td>
-                <a th:href="@{'/reserve/' + ${book.id}}">reserve</a>
+                <a th:href="@{'/rent/' + ${book.id}}" th:if="${book.left} > 0">rent</a>
+                <a th:href="@{'/reserve/' + ${book.id}}" th:if="${book.left} < 1">reserve</a>
                 <a th:href="@{'/edit/book/' + ${book.id}}">Edit</a>
                 <a th:href="@{'/delete/book/' + ${book.id}}">Delete</a>
             </td>

@@ -14,14 +14,11 @@ import com.openclassroom.bookservice.Service.BookService;
 import com.openclassroom.bookservice.Service.LoanService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @RequestMapping(value = "library/", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -136,5 +133,18 @@ public class BookController {
     @RequestMapping(value = "book/{id}/borrower", method = RequestMethod.GET)
     public User getBookBorrower(User user){
         return loanService.findByUser(user).getUser();
+    }
+
+    @RequestMapping(value = "book/update", method = RequestMethod.POST)
+    public ResponseEntity<String> updateBook(@RequestBody Books book) {
+        bookService.deleteById(book.getId());
+        bookService.save(book);
+        return new ResponseEntity<>("Successfully updated", HttpStatus.OK);
+    }
+
+    @PostMapping("/reserve")
+    public ResponseEntity<String> reserveBook(@RequestBody Books book) {
+
+        return new ResponseEntity<>("Successfully registered", HttpStatus.OK);
     }
 }

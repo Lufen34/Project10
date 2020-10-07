@@ -1,6 +1,7 @@
 package com.openclassroom.client.BookServiceBeans;
 
 import java.io.Serializable;
+import java.util.*;
 
 public class BooksBean implements Serializable
 {
@@ -11,7 +12,9 @@ public class BooksBean implements Serializable
     private String title;
     private String isbn;
     private int    stock;
-    private int    left; 
+    private int    left;
+
+    private List<UserBean> UserListReservations = new ArrayList<>();
 
     public BooksBean() {
         // for container
@@ -71,5 +74,9 @@ public class BooksBean implements Serializable
 
     public void setLeft(int left) {
         this.left = left;
+    }
+
+    public List<UserBean> getUserListReservations() {
+        return UserListReservations;
     }
 }

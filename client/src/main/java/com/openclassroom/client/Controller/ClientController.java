@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -47,11 +48,11 @@ public class ClientController {
     private boolean isFilteredByIsbn;
 
     private void setFilterState(String byAuthor, String byTitle, String byIsbn) {
-    	if(byAuthor.contains("on"))
+        if (byAuthor.contains("on"))
             isFilteredByAuthor = true;
-        else if(byTitle.contains("on"))
+        else if (byTitle.contains("on"))
             isFilteredByTitle = true;
-        else if(byIsbn.contains("on"))
+        else if (byIsbn.contains("on"))
             isFilteredByIsbn = true;
     }
 
@@ -60,25 +61,22 @@ public class ClientController {
         isFilteredByTitle = false;
         isFilteredByIsbn = false;
     }
-    
-    @RequestMapping(path="/", method = RequestMethod.GET)    
-    public String getHome(Model model){
+
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String getHome(Model model) {
         return "index";
     }
 
     @RequestMapping(path = "/books", method = RequestMethod.GET)
-    public String getBooks(Model model, @RequestParam(defaultValue = "")String param, @RequestParam(defaultValue = "")String authors, @RequestParam(defaultValue = "")String title, @RequestParam(defaultValue = "")String isbn){
+    public String getBooks(Model model, @RequestParam(defaultValue = "") String param, @RequestParam(defaultValue = "") String authors, @RequestParam(defaultValue = "") String title, @RequestParam(defaultValue = "") String isbn) {
         setFilterState(authors, title, isbn);
-        if (isFilteredByAuthor){
+        if (isFilteredByAuthor) {
             model.addAttribute("books", bookServiceProxy.getBookByAuthorsByKeyWord(param));
-        }
-        else if (isFilteredByTitle){
+        } else if (isFilteredByTitle) {
             model.addAttribute("books", bookServiceProxy.getBookByTitleByKeyWord(param));
-        }
-        else if (isFilteredByIsbn) {
+        } else if (isFilteredByIsbn) {
             model.addAttribute("books", bookServiceProxy.getBookByIsbn(param));
-        }
-        else {
+        } else {
             model.addAttribute("books", bookServiceProxy.getBooks());
         }
         resetFilterState();
@@ -86,16 +84,16 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/login")
-    public String Login(HttpServletResponse httpServletResponse, Model model, @ModelAttribute("user") UserBean userBean){
+    public String Login(HttpServletResponse httpServletResponse, Model model, @ModelAttribute("user") UserBean userBean) {
 
         ResponseEntity responseEntity = null;
         /*logger.warn("==========================================");
         logger.warn(userBean.toString());
         logger.warn("==========================================");*/
         if (userBean.getPassword() != null || userBean.getLogin() != null) {
-            try{
+            try {
                 responseEntity = oAuthServerProxy.login(userBean);
-            }catch (Exception e){
+            } catch (Exception e) {
                 logger.warn("==========================================");
                 logger.warn("Unable to login to OAUTH-SERVER");
                 logger.warn("==========================================");
@@ -111,7 +109,7 @@ public class ClientController {
     }
 
     @PostMapping(value = "/logout")
-    public String Logout(HttpServletResponse response){
+    public String Logout(HttpServletResponse response) {
         CookieUtility.clearCookie(response);
         return "redirect:/";
     }
@@ -130,7 +128,7 @@ public class ClientController {
         logger.warn("SENDING NOW TO OAUTHSERVER");
         try {
             oAuthServerProxy.register(userBean);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             logger.warn("=============================");
             logger.warn("=============================");
@@ -156,7 +154,7 @@ public class ClientController {
         return "book";
     }*/
 
-    @RequestMapping(value = "/reserve/{id}")
+    @RequestMapping(value = "/rent/{id}")
     public String rentBook(@PathVariable("id") String id, @CookieValue("access_token") String cookie) {
         LoanBean loan = new LoanBean();
         UserBookModel ubm = new UserBookModel();
@@ -168,7 +166,6 @@ public class ClientController {
         temp = oAuthServerProxy.getAccountByLogin(ubm.getLogin());
 
         ubm = temp.getBody();
-
         loan.setBook(book);
         loan.setUser(ubm);
         loan.setBegin(new GregorianCalendar());
@@ -181,6 +178,24 @@ public class ClientController {
             e.printStackTrace();
             return "already_loaned";
         }
+        book.setLeft(book.getLeft() - 1);
+        bookServiceProxy.updateBook(book);
+        return "successful_rent";
+    }
+
+    @RequestMapping(value = "/reserve/{id}")
+    public String reserveBook(@PathVariable("id") String id, @CookieValue("access_token") String cookie) {
+        BooksBean book = bookServiceProxy.getBookById(id);
+
+        ResponseEntity<UserBookModel> user = oAuthServerProxy.getAccountByLogin(CookieUtility.getLoginFromJWT(cookie));
+
+        book.getUserListReservations().add(user.getBody());
+        logger.debug(book.getUserListReservations().toString());
+        if (book.getUserListReservations().contains(user.getBody())) { 
+            return "already_reserved";
+         }
+        bookServiceProxy.updateBook(book);
+        // TODO envoyer un email ici
         return "successful_reserve";
     }
 }

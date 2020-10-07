@@ -26,4 +26,5 @@ public interface BookRepository extends MongoRepository<Books, String> {
     public List<Books> findByAuthorsByKeyWord(String authors);
     @Query("{stock: {$gt: 0}}")
     public List<Books> hasInStock();
+    void deleteById(String id);
 }

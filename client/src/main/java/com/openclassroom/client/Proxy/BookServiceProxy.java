@@ -54,7 +54,7 @@ public interface BookServiceProxy {
     @RequestMapping(value = "book/{id}/borrower", method = RequestMethod.GET)
     UserBean getBookBorrower(UserBean user);
 
-    @PostMapping(value = "/reserve")
+    @PostMapping(value = "/rent")
     ResponseEntity<String> registerLoan(@RequestBody LoanBean loan);
 
     @RequestMapping(value = "/loans", method = RequestMethod.POST)
@@ -65,4 +65,6 @@ public interface BookServiceProxy {
 
     @PostMapping("/loan/update/")
     ResponseEntity<String> updateLoan(@RequestBody LoanBean loan);
+    @PostMapping("/book/update/")
+    ResponseEntity<String> updateBook(@RequestBody BooksBean book);
 }

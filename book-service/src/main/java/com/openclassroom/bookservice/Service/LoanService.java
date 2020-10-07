@@ -27,7 +27,10 @@ public class LoanService {
     public Loan findByBook(Books book) {
         return repository.findByBook(book);
     }
-    
+    public Loan findByBookId(String id) {
+        return repository.findByBookId(id);
+    }
+
     public Optional<Loan> findById(String id) {
         return repository.findById(id);
     }

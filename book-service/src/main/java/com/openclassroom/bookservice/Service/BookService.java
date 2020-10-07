@@ -53,4 +53,7 @@ public class BookService {
     public void delete(Books book) {
         repository.delete(book);
     }
+    public void deleteById(String id) {
+        repository.deleteById(id);
+    }
 }

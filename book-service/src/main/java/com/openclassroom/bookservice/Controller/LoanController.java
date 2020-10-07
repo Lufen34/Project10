@@ -19,9 +19,9 @@ public class LoanController {
     @Autowired
     private LoanService loanService;
 
-    @PostMapping("/reserve")
+    @PostMapping("/rent")
     public ResponseEntity<String> registerLoan(@RequestBody Loan loan) {
-        if (loanService.findByBook(loan.getBook()) == null)
+        if (loanService.findByBookId(loan.getBook().getId()) == null)
             loanService.save(loan);
         else
             return new ResponseEntity<>("You have already loaned this book", HttpStatus.BAD_REQUEST);

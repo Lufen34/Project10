@@ -3,6 +3,11 @@ package com.openclassroom.bookservice.Model;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Books {
     @MongoId(value = FieldType.OBJECT_ID)
     private String id;
@@ -13,6 +18,8 @@ public class Books {
     private int    stock;
     private int    left; 
 
+    //TODO utiliser Queue au lieu de lister car FIFO (First in First Out)
+    private List<User> UserListReservations = new ArrayList<>();
 
     public Books() {}
 
@@ -77,5 +84,8 @@ public class Books {
     public void setLeft(int left) {
         this.left = left;
     }
-    
+
+    public List<User> getUserListReservations() {
+        return UserListReservations;
+    }
 }
