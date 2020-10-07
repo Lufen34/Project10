@@ -14,7 +14,7 @@ public class BooksBean implements Serializable
     private int    stock;
     private int    left;
 
-    private List<UserBean> UserListReservations = new ArrayList<>();
+    private List<UserBookModel> UserListReservations = new ArrayList<>();
 
     public BooksBean() {
         // for container
@@ -76,7 +76,20 @@ public class BooksBean implements Serializable
         this.left = left;
     }
 
-    public List<UserBean> getUserListReservations() {
+    public List<UserBookModel> getUserListReservations() {
         return UserListReservations;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BooksBean booksBean = (BooksBean) o;
+        return id.equals(booksBean.id) && authors.equals(booksBean.authors) && Objects.equals(publisher, booksBean.publisher) && title.equals(booksBean.title) && isbn.equals(booksBean.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, authors, publisher, title, isbn);
     }
 }

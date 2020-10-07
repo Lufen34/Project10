@@ -1,8 +1,7 @@
 package com.openclassroom.client.BookServiceBeans;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class UserBean {
     private static final long serialVersionUID = -2777427344548523655L;
@@ -12,6 +11,7 @@ public class UserBean {
     private String address;
     private String login;
     private String password;
+
 
     public UserBean() {
         // container
@@ -74,5 +74,18 @@ public class UserBean {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserBean userBean = (UserBean) o;
+        return id.equals(userBean.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

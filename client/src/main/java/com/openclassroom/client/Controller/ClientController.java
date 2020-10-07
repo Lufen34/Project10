@@ -2,10 +2,7 @@ package com.openclassroom.client.Controller;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.openclassroom.client.BookServiceBeans.BooksBean;
-import com.openclassroom.client.BookServiceBeans.LoanBean;
-import com.openclassroom.client.BookServiceBeans.UserBean;
-import com.openclassroom.client.BookServiceBeans.UserBookModel;
+import com.openclassroom.client.BookServiceBeans.*;
 import com.openclassroom.client.Proxy.BookServiceProxy;
 
 import com.openclassroom.client.Proxy.OAuthServerProxy;
@@ -185,15 +182,24 @@ public class ClientController {
 
     @RequestMapping(value = "/reserve/{id}")
     public String reserveBook(@PathVariable("id") String id, @CookieValue("access_token") String cookie) {
+        ReserveBean reserve = new ReserveBean();
         BooksBean book = bookServiceProxy.getBookById(id);
 
         ResponseEntity<UserBookModel> user = oAuthServerProxy.getAccountByLogin(CookieUtility.getLoginFromJWT(cookie));
+        reserve.setBegin(new GregorianCalendar());
+        GregorianCalendar end = new GregorianCalendar();
+        end.add(Calendar.DAY_OF_MONTH, 14);
+        reserve.setEnd(end);
+        reserve.setBook(book);
+        reserve.setUser(user.getBody());
 
-        book.getUserListReservations().add(user.getBody());
-        logger.debug(book.getUserListReservations().toString());
-        if (book.getUserListReservations().contains(user.getBody())) { 
+        var a = bookServiceProxy.getReservationByUserId(user.getBody().getId());
+
+        if (a.getBody().contains(reserve)) {
             return "already_reserved";
          }
+        bookServiceProxy.addReservation(reserve);
+        book.getUserListReservations().add(user.getBody());
         bookServiceProxy.updateBook(book);
         // TODO envoyer un email ici
         return "successful_reserve";

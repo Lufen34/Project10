@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.openclassroom.client.BookServiceBeans.BooksBean;
+import com.openclassroom.client.BookServiceBeans.ReserveBean;
 import com.openclassroom.client.BookServiceBeans.UserBean;
 import com.openclassroom.client.BookServiceBeans.LoanBean;
 
@@ -67,4 +68,8 @@ public interface BookServiceProxy {
     ResponseEntity<String> updateLoan(@RequestBody LoanBean loan);
     @PostMapping("/book/update/")
     ResponseEntity<String> updateBook(@RequestBody BooksBean book);
+    @PostMapping("book/reservation/add")
+    void addReservation(@RequestBody ReserveBean reserve);
+    @GetMapping("book/reservations/{UserId}")
+    ResponseEntity<List<ReserveBean>> getReservationByUserId(@PathVariable(value = "UserId") String id);
 }

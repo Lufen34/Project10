@@ -1,6 +1,7 @@
 package com.openclassroom.client.Controller;
 
 import com.openclassroom.client.BookServiceBeans.LoanBean;
+import com.openclassroom.client.BookServiceBeans.ReserveBean;
 import com.openclassroom.client.BookServiceBeans.UserBookModel;
 import com.openclassroom.client.Proxy.BookServiceProxy;
 import com.openclassroom.client.Proxy.OAuthServerProxy;
@@ -43,7 +44,10 @@ public class MySpace {
         ResponseEntity<List<LoanBean>> response = bookServiceProxy.getLoans(user.getEmail());
         List<LoanBean> loans = response.getBody();
 
+        ResponseEntity<List<ReserveBean>> reservations = bookServiceProxy.getReservationByUserId(user.getId());
+
         model.addAttribute("loans", loans);
+        model.addAttribute("reservations", reservations.getBody());
         return"my_space";
     }
 

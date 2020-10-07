@@ -3,10 +3,7 @@ package com.openclassroom.bookservice.Model;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Books {
     @MongoId(value = FieldType.OBJECT_ID)
@@ -87,5 +84,18 @@ public class Books {
 
     public List<User> getUserListReservations() {
         return UserListReservations;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Books books = (Books) o;
+        return id.equals(books.id) && authors.equals(books.authors) && Objects.equals(publisher, books.publisher) && title.equals(books.title) && isbn.equals(books.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, authors, publisher, title, isbn);
     }
 }
