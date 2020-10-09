@@ -1,32 +1,22 @@
 package com.openclassroom.client.Controller;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.openclassroom.client.BookServiceBeans.*;
 import com.openclassroom.client.Proxy.BookServiceProxy;
 
 import com.openclassroom.client.Proxy.OAuthServerProxy;
 import com.openclassroom.client.utilities.CookieUtility;
-import com.openclassroom.client.utilities.JwtProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.SecurityContext;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 
