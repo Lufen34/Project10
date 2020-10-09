@@ -1,0 +1,12 @@
+
+:
+java:S2629L"$Invoke method(s) only conditionally.(ÑÏ„ÿ
+X
+java:S2259)"BA "NullPointerException" could be thrown; "user" is nullable here.(àæ‘İ
+|
+java:S1192("fDefine a constant instead of duplicating this literal "=====================================" 4 times.(şôÏã
+X
+java:S2259?"BA "NullPointerException" could be thrown; "user" is nullable here.(àæ‘İ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¹±Ø¦
+X
+java:S2259R"BA "NullPointerException" could be thrown; "loan" is nullable here.(ıê
