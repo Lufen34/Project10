@@ -51,4 +51,10 @@ public class LoanController {
     public List<Loan> getALlLoans(){
         return loanService.findAll();
     }
+
+    @PostMapping("/loan/delete/")
+    public ResponseEntity<String> deleteLoan(@RequestBody Loan loan) {
+        loanService.delete(loan);
+        return new ResponseEntity<String>("Loan successfully deleted.", HttpStatus.OK);
+    }
 }

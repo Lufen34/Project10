@@ -44,10 +44,11 @@ public class MySpace {
         ResponseEntity<List<LoanBean>> response = bookServiceProxy.getLoans(user.getEmail());
         List<LoanBean> loans = response.getBody();
 
-        ResponseEntity<List<ReserveBean>> reservations = bookServiceProxy.getReservationByUserId(user.getId());
+        ResponseEntity<List<ReserveBean>> resp = bookServiceProxy.getReservationByUserId(user.getId());
+        List<ReserveBean> reservations = resp.getBody();
 
         model.addAttribute("loans", loans);
-        model.addAttribute("reservations", reservations.getBody());
+        model.addAttribute("reservations", reservations);
         return"my_space";
     }
 
@@ -66,7 +67,10 @@ public class MySpace {
         ResponseEntity<List<LoanBean>> response = bookServiceProxy.getLoans(user.getEmail());
         List<LoanBean> loans = response.getBody();
 
+        ResponseEntity<List<ReserveBean>> reservations = bookServiceProxy.getReservationByUserId(user.getId());
+
         model.addAttribute("loans", loans);
+        model.addAttribute("reservations", reservations.getBody());
         return"my_space_already_extended";
     }
 
@@ -88,5 +92,21 @@ public class MySpace {
         else {
             return "redirect:/my_space_already_extended";
         }
+    }
+
+    @GetMapping("/loan/return/{id}")
+    public String returnBook(@PathVariable("id") String id) {
+        ResponseEntity<LoanBean> loan = bookServiceProxy.getLoan(id);
+        bookServiceProxy.updateBook(loan.getBody().getBook());
+        bookServiceProxy.deleteLoan(loan.getBody());
+        return "redirect:/my_space";
+    }
+
+    @GetMapping("/reserve/cancel/{id}")
+    public String cancelReservation(@PathVariable("id") String id) {
+        ResponseEntity<ReserveBean> reserve = bookServiceProxy.getReservation(id);
+        bookServiceProxy.updateBook(reserve.getBody().getBook());
+        bookServiceProxy.deleteReservation(reserve.getBody());
+        return "redirect:/my_space";
     }
 }

@@ -3,6 +3,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 public class ReserveBean {
     @MongoId(targetType = FieldType.OBJECT_ID)
@@ -74,4 +75,16 @@ public class ReserveBean {
         this.user = user;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReserveBean that = (ReserveBean) o;
+        return book.equals(that.book);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(book);
+    }
 }

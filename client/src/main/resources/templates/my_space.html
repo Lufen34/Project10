@@ -41,15 +41,16 @@
             <td>Actions</td>
         </tr>
         <tr th:each="reserved : ${reservations}">
-            <td th:text ="${loan.book.title}">Title</td>
-            <td th:text ="${loan.book.authors}">Authors</td>
-            <td th:text="${loan.book.isbn}">Isbn</td>
-            <td th:text="${loan.begin.getTime().toGMTString()}">begin</td>
-            <td th:text="${loan.end.getTime().toGMTString()}">end</td>
+            <div th:if="${reserved.book}">
+            <td th:text ="${reserved.book.title}">Title</td>
+            <td th:text ="${reserved.book.authors}">Authors</td>
+            <td th:text="${reserved.book.isbn}">Isbn</td>
+            <td th:text="${reserved.begin.getTime().toGMTString()}">begin</td>
+            <td th:text="${reserved.end.getTime().toGMTString()}">end</td>
             <td>
-                <a th:href="@{'/loan/extend/' + ${loan.id}}">Extend</a>
-                <a th:href="@{'/loan/return/' + ${loan.id}}">Return</a>
+                <a th:href="@{'/reserve/cancel/' + ${reserved.id}}">Cancel</a>
             </td>
+            </div>
         </tr>
     </table>
 </div>

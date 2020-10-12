@@ -165,6 +165,9 @@ public class ClientController {
             e.printStackTrace();
             return "already_loaned";
         }
+        /* TODO verifier pourquoi il update uniquement sur l'application quand dans la BDD la valeur est pas update
+        ** mais uniquement dans l'application. (A faire seulement si demander) l'appli marche quand même avec ça
+         */
         book.setLeft(book.getLeft() - 1);
         bookServiceProxy.updateBook(book);
         return "successful_rent";
@@ -185,9 +188,12 @@ public class ClientController {
 
         var a = bookServiceProxy.getReservationByUserId(user.getBody().getId());
 
-        if (a.getBody().contains(reserve)) {
-            return "already_reserved";
-         }
+        try {
+            if (a.getBody().contains(reserve))
+                return "already_reserved";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         bookServiceProxy.addReservation(reserve);
         book.getUserListReservations().add(user.getBody());
         bookServiceProxy.updateBook(book);

@@ -66,10 +66,22 @@ public interface BookServiceProxy {
 
     @PostMapping("/loan/update/")
     ResponseEntity<String> updateLoan(@RequestBody LoanBean loan);
+
     @PostMapping("/book/update/")
     ResponseEntity<String> updateBook(@RequestBody BooksBean book);
+
     @PostMapping("book/reservation/add")
     void addReservation(@RequestBody ReserveBean reserve);
+
     @GetMapping("book/reservations/{UserId}")
     ResponseEntity<List<ReserveBean>> getReservationByUserId(@PathVariable(value = "UserId") String id);
+
+    @PostMapping("/loan/delete/")
+    ResponseEntity<String> deleteLoan(@RequestBody LoanBean loan);
+
+    @PostMapping("book/reservation/delete")
+    ResponseEntity<String> deleteReservation(@RequestBody ReserveBean reserve);
+
+    @PostMapping("/book/reservation/{id}")
+    ResponseEntity<ReserveBean> getReservation(@PathVariable("id") String id);
 }
