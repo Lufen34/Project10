@@ -1,6 +1,7 @@
 package com.openclassroom.client.Controller;
 
 import com.openclassroom.client.BookServiceBeans.*;
+import com.openclassroom.client.Proxy.BatchServiceProxy;
 import com.openclassroom.client.Proxy.BookServiceProxy;
 
 import com.openclassroom.client.Proxy.OAuthServerProxy;
@@ -18,6 +19,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 
 @Controller
@@ -179,6 +181,8 @@ public class ClientController {
         BooksBean book = bookServiceProxy.getBookById(id);
 
         ResponseEntity<UserBookModel> user = oAuthServerProxy.getAccountByLogin(CookieUtility.getLoginFromJWT(cookie));
+        book.getUserListReservations().add(user.getBody());
+
         reserve.setBegin(new GregorianCalendar());
         GregorianCalendar end = new GregorianCalendar();
         end.add(Calendar.DAY_OF_MONTH, 14);
@@ -197,7 +201,6 @@ public class ClientController {
         bookServiceProxy.addReservation(reserve);
         book.getUserListReservations().add(user.getBody());
         bookServiceProxy.updateBook(book);
-        // TODO envoyer un email ici
         return "successful_reserve";
     }
 }

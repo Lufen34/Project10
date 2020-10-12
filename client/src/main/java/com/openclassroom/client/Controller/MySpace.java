@@ -3,6 +3,7 @@ package com.openclassroom.client.Controller;
 import com.openclassroom.client.BookServiceBeans.LoanBean;
 import com.openclassroom.client.BookServiceBeans.ReserveBean;
 import com.openclassroom.client.BookServiceBeans.UserBookModel;
+import com.openclassroom.client.Proxy.BatchServiceProxy;
 import com.openclassroom.client.Proxy.BookServiceProxy;
 import com.openclassroom.client.Proxy.OAuthServerProxy;
 import com.openclassroom.client.utilities.CookieUtility;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Controller
@@ -26,6 +28,9 @@ public class MySpace {
 
     @Autowired
     private OAuthServerProxy oAuthServerProxy;
+
+    @Autowired
+    private BatchServiceProxy batchServiceProxy;
 
     private static Logger logger = LoggerFactory.getLogger(MySpace.class);
 
@@ -95,8 +100,16 @@ public class MySpace {
     }
 
     @GetMapping("/loan/return/{id}")
-    public String returnBook(@PathVariable("id") String id) {
+    public String returnBook(@PathVariable("id") String id, @CookieValue("access_token") Cookie cookie) {
+        String login = CookieUtility.getLoginFromJWT(cookie.getValue());
+        ResponseEntity<UserBookModel> usr = oAuthServerProxy.getAccountByLogin(login);
         ResponseEntity<LoanBean> loan = bookServiceProxy.getLoan(id);
+
+        if (!bookServiceProxy.getBookById(loan.getBody().getBook().getId()).getUserListReservations().isEmpty()) {
+            String nextUserEmail = bookServiceProxy.getBookById(loan.getBody().getBook().getId()).getUserListReservations().get(0).getEmail();
+            batchServiceProxy.sendAcceptMail(nextUserEmail);
+        }
+
         bookServiceProxy.updateBook(loan.getBody().getBook());
         bookServiceProxy.deleteLoan(loan.getBody());
         return "redirect:/my_space";
@@ -106,6 +119,25 @@ public class MySpace {
     public String cancelReservation(@PathVariable("id") String id) {
         ResponseEntity<ReserveBean> reserve = bookServiceProxy.getReservation(id);
         bookServiceProxy.updateBook(reserve.getBody().getBook());
+        bookServiceProxy.deleteReservation(reserve.getBody());
+
+        //TODO notify and email here for the next user if not null
+        return "redirect:/my_space";
+    }
+
+    @GetMapping("/reserve/accept/{id}")
+    public String acceptReservation(@PathVariable("id") String id) {
+        ResponseEntity<ReserveBean> reserve = bookServiceProxy.getReservation(id);
+        LoanBean loan = new LoanBean();
+
+        loan.setBook(reserve.getBody().getBook());
+        loan.setUser(reserve.getBody().getUser());
+        loan.setBegin(new GregorianCalendar());
+        GregorianCalendar end = new GregorianCalendar();
+        end.add(Calendar.DAY_OF_MONTH, 14);
+        loan.setEnd(end);
+
+        bookServiceProxy.registerLoan(loan);
         bookServiceProxy.deleteReservation(reserve.getBody());
         return "redirect:/my_space";
     }

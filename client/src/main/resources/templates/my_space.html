@@ -48,6 +48,7 @@
             <td th:text="${reserved.begin.getTime().toGMTString()}">begin</td>
             <td th:text="${reserved.end.getTime().toGMTString()}">end</td>
             <td>
+                <a th:if="${reserved.book.left} > 0" th:href="@{'/reserve/accept/' + ${reserved.id}}">Accept</a>
                 <a th:href="@{'/reserve/cancel/' + ${reserved.id}}">Cancel</a>
             </td>
             </div>
