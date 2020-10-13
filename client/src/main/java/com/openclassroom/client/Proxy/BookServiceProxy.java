@@ -3,16 +3,15 @@ package com.openclassroom.client.Proxy;
 import java.util.List;
 import java.util.Optional;
 
-import com.openclassroom.client.BookServiceBeans.BooksBean;
-import com.openclassroom.client.BookServiceBeans.ReserveBean;
-import com.openclassroom.client.BookServiceBeans.UserBean;
-import com.openclassroom.client.BookServiceBeans.LoanBean;
+import com.openclassroom.client.BookServiceBeans.*;
 
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @FeignClient(name = "GATEWAY-SERVER", contextId = "BOOK-SERVICE")
 @RibbonClient(name = "BOOK-SERVICE")
@@ -59,7 +58,7 @@ public interface BookServiceProxy {
     ResponseEntity<String> registerLoan(@RequestBody LoanBean loan);
 
     @RequestMapping(value = "/loans", method = RequestMethod.POST)
-    ResponseEntity<List<LoanBean>> getLoans(@RequestBody String login);
+    ResponseEntity<List<LoanBean>> getLoans(@RequestBody String email);
 
     @PostMapping("/loan/{id}")
     ResponseEntity<LoanBean> getLoan(@PathVariable("id") String id);
@@ -84,4 +83,10 @@ public interface BookServiceProxy {
 
     @PostMapping("/book/reservation/{id}")
     ResponseEntity<ReserveBean> getReservation(@PathVariable("id") String id);
+
+    @PostMapping("/loan/book/")
+    ResponseEntity<LoanBean> getLoanByBookAndUser(@Valid @RequestBody BookAndUser entity);
+
+    @PostMapping("book/reservation/")
+    ResponseEntity<ReserveBean> getReservationByBookAndUser(@RequestBody BookAndUser bookAndUser);
 }

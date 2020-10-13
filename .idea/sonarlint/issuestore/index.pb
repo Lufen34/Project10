@@ -49,3 +49,17 @@ u
 Eclient/src/main/java/com/openclassroom/client/Controller/MySpace.java,5/6/56f7817463468246be3897468c3a2c2e8ee4cccb
 Ž
 ^book-service/src/main/java/com/openclassroom/bookservice/Controller/ReservationController.java,5/c/5c61cd784d3b88fd7528e45ecb5ebad287ac18b6
+…
+Ubatch-service/src/main/java/com/openclassrom/batchservice/proxy/BookServiceProxy.java,4/9/49544ac95714619fbe9fcfcc779efa59c785dbf7
+‰
+Ybatch-service/src/main/java/com/openclassrom/batchservice/bookservicebeans/BooksBean.java,7/7/77069a4282de478df2957a1feb80cda1fc88b729
+>
+client/pom.xml,0/4/041f522da4f7523dfafc230a092f5af2a53c5e8e
+ˆ
+Xbatch-service/src/main/java/com/openclassrom/batchservice/bookservicebeans/UserBean.java,c/8/c87648e8f6e56268d3ebb59412782acbf81c35c5
+y
+Ibook-service/src/main/java/com/openclassroom/bookservice/Application.java,0/8/080db2dd7070cbe16846631f2f1c374b96cb8a4c
+z
+Jclient/src/main/java/com/openclassroom/client/Proxy/BatchServiceProxy.java,d/3/d3835832510125d97d781768da750e909374ddd1
+†
+Vbatch-service/src/main/java/com/openclassrom/batchservice/BatchServiceApplication.java,a/9/a9d8d85319382593f1cff2edf6f542ce4f5dac89

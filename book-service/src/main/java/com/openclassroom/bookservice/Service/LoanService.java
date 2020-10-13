@@ -50,4 +50,8 @@ public class LoanService {
     public List<Loan> findAll() {
         return repository.findAll();
     }
+
+    public Loan findByBookAndUser(Books book, User user){
+        return repository.findByBookIdAndAndUserId(book.getId(), user.getId());
+    }
 }

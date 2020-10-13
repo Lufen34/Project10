@@ -167,10 +167,12 @@ public class ClientController {
             e.printStackTrace();
             return "already_loaned";
         }
-        /* TODO verifier pourquoi il update uniquement sur l'application quand dans la BDD la valeur est pas update
-        ** mais uniquement dans l'application. (A faire seulement si demander) l'appli marche quand même avec ça
-         */
+
         book.setLeft(book.getLeft() - 1);
+        BookAndUser entity = new BookAndUser(book, ubm);
+        loan = bookServiceProxy.getLoanByBookAndUser(entity).getBody();
+        loan.getBook().setLeft(book.getLeft());
+        bookServiceProxy.updateLoan(loan);
         bookServiceProxy.updateBook(book);
         return "successful_rent";
     }
@@ -181,7 +183,6 @@ public class ClientController {
         BooksBean book = bookServiceProxy.getBookById(id);
 
         ResponseEntity<UserBookModel> user = oAuthServerProxy.getAccountByLogin(CookieUtility.getLoginFromJWT(cookie));
-        book.getUserListReservations().add(user.getBody());
 
         reserve.setBegin(new GregorianCalendar());
         GregorianCalendar end = new GregorianCalendar();

@@ -1,8 +1,6 @@
 package com.openclassroom.client.Controller;
 
-import com.openclassroom.client.BookServiceBeans.LoanBean;
-import com.openclassroom.client.BookServiceBeans.ReserveBean;
-import com.openclassroom.client.BookServiceBeans.UserBookModel;
+import com.openclassroom.client.BookServiceBeans.*;
 import com.openclassroom.client.Proxy.BatchServiceProxy;
 import com.openclassroom.client.Proxy.BookServiceProxy;
 import com.openclassroom.client.Proxy.OAuthServerProxy;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -32,11 +31,15 @@ public class MySpace {
     @Autowired
     private BatchServiceProxy batchServiceProxy;
 
+    private Calendar today = Calendar.getInstance();
+
     private static Logger logger = LoggerFactory.getLogger(MySpace.class);
 
     @GetMapping("/my_space")
     public String getSpace(Model model, @CookieValue("access_token") Cookie cookie){
         String login = CookieUtility.getLoginFromJWT(cookie.getValue());
+
+        today.setTime(new Date());
 
         ResponseEntity<UserBookModel> res = oAuthServerProxy.getAccountByLogin(login);
 
@@ -51,6 +54,14 @@ public class MySpace {
 
         ResponseEntity<List<ReserveBean>> resp = bookServiceProxy.getReservationByUserId(user.getId());
         List<ReserveBean> reservations = resp.getBody();
+
+
+        for (ReserveBean reservation : reservations){
+            // If the date has expired,
+            if (today.after(reservation.getEnd())) {
+                bookServiceProxy.deleteReservation(reservation);
+            }
+        }
 
         model.addAttribute("loans", loans);
         model.addAttribute("reservations", reservations);
@@ -104,14 +115,24 @@ public class MySpace {
         String login = CookieUtility.getLoginFromJWT(cookie.getValue());
         ResponseEntity<UserBookModel> usr = oAuthServerProxy.getAccountByLogin(login);
         ResponseEntity<LoanBean> loan = bookServiceProxy.getLoan(id);
+        BooksBean book = bookServiceProxy.getBookById(loan.getBody().getBook().getId());
 
-        if (!bookServiceProxy.getBookById(loan.getBody().getBook().getId()).getUserListReservations().isEmpty()) {
+        /*if (!bookServiceProxy.getBookById(loan.getBody().getBook().getId()).getUserListReservations().isEmpty()) {
             String nextUserEmail = bookServiceProxy.getBookById(loan.getBody().getBook().getId()).getUserListReservations().get(0).getEmail();
             batchServiceProxy.sendAcceptMail(nextUserEmail);
+        }*/
+
+        if (!book.getUserListReservations().isEmpty()) {
+            // Send email to the first user of the list who asked.
+            batchServiceProxy.sendAcceptMail(book.getUserListReservations().get(0).getEmail());
+        }
+        else {
+            loan.getBody().getBook().setLeft(loan.getBody().getBook().getLeft() + 1);
+            bookServiceProxy.updateBook(loan.getBody().getBook());
         }
 
-        bookServiceProxy.updateBook(loan.getBody().getBook());
         bookServiceProxy.deleteLoan(loan.getBody());
+
         return "redirect:/my_space";
     }
 

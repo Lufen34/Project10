@@ -1,5 +1,6 @@
 package com.openclassroom.bookservice.Controller;
 
+import com.openclassroom.bookservice.Model.BookAndUser;
 import com.openclassroom.bookservice.Model.Loan;
 import com.openclassroom.bookservice.Model.Reserve;
 import com.openclassroom.bookservice.Service.ReservationService;
@@ -39,5 +40,10 @@ public class ReservationController {
     public ResponseEntity<String> deleteReservation(@RequestBody Reserve reserve) {
         reservationService.deleteReservation(reserve);
         return new ResponseEntity<String>("Reservation successfully deleted.", HttpStatus.OK);
+    }
+
+    @PostMapping("book/reservation/")
+    public ResponseEntity<Reserve> getReservationByBookAndUser(@RequestBody BookAndUser bookAndUser) {
+        return new ResponseEntity<Reserve>(reservationService.getReservationByUserAndBook(bookAndUser.getBook(), bookAndUser.getUser()), HttpStatus.OK);
     }
 }

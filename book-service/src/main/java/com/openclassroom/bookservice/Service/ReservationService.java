@@ -1,10 +1,13 @@
 package com.openclassroom.bookservice.Service;
 
+import com.openclassroom.bookservice.Model.Books;
 import com.openclassroom.bookservice.Model.Reserve;
+import com.openclassroom.bookservice.Model.User;
 import com.openclassroom.bookservice.Repository.ReserveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,5 +31,9 @@ public class ReservationService {
 
     public void deleteReservation(Reserve reserve) {
         reserveRepository.delete(reserve);
+    }
+
+    public Reserve getReservationByUserAndBook(Books book, User user) {
+        return reserveRepository.findByBookIdAndAndUserId(book.getId(), user.getId());
     }
 }
