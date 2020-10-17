@@ -3,18 +3,19 @@ package com.openclassroom.bookservice.Model;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class User {
     private String id;
     private String name;
     private String address;
     private String email;
+    private String login;
+    private String password;
 
 
     private List<Loan> rented = new ArrayList<>();
+    private Map<String, Boolean> listBooksToAcceptReservations = new HashMap<>();
 
     public User() {
     }
@@ -63,6 +64,26 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Map<String, Boolean> getListBooksToAcceptReservations() {
+        return listBooksToAcceptReservations;
     }
 
     @Override

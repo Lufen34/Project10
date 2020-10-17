@@ -20,9 +20,6 @@ public interface BookServiceProxy {
 
     @RequestMapping(value = "book/title/{title}", method = RequestMethod.GET)
     List<BooksBean> getBookByTitleByKeyWord(@PathVariable(value = "title") String title);
-    
-    @RequestMapping(value = "book/publisher/{publisher}", method = RequestMethod.GET)
-    BooksBean getBookByPublisher(@PathVariable(value = "publisher") String publisher);
 
     @RequestMapping(value = "book/author/{author}", method = RequestMethod.GET)
     List<BooksBean> getBookByAuthorsByKeyWord(@PathVariable(value = "author") String author);
@@ -89,4 +86,7 @@ public interface BookServiceProxy {
 
     @PostMapping("book/reservation/")
     ResponseEntity<ReserveBean> getReservationByBookAndUser(@RequestBody BookAndUser bookAndUser);
+
+    @PostMapping("/reserve/update/")
+    ResponseEntity<String> updateReservation(@RequestBody ReserveBean reserve);
 }

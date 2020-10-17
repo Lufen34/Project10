@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface BookRepository extends MongoRepository<Books, String> {
     // the "?0" replace is replaced by the first parameter of the method.
     //@Query("{title: ?0}")
-    public Optional<Books> findByPublisher(String publisher);
     public Optional<Books> findByTitle(String title);
     public Optional<Books> findById(String id);
     public Optional<Books> findByIsbn(String isbn);

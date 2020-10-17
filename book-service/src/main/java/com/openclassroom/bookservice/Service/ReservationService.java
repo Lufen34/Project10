@@ -36,4 +36,8 @@ public class ReservationService {
     public Reserve getReservationByUserAndBook(Books book, User user) {
         return reserveRepository.findByBookIdAndAndUserId(book.getId(), user.getId());
     }
+
+    public void deleteReservationById(String id){
+        reserveRepository.deleteById(id);
+    }
 }

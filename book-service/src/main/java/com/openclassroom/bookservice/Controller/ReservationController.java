@@ -46,4 +46,11 @@ public class ReservationController {
     public ResponseEntity<Reserve> getReservationByBookAndUser(@RequestBody BookAndUser bookAndUser) {
         return new ResponseEntity<Reserve>(reservationService.getReservationByUserAndBook(bookAndUser.getBook(), bookAndUser.getUser()), HttpStatus.OK);
     }
+
+    @PostMapping("/reserve/update/")
+    public ResponseEntity<String> updateReservation(@RequestBody Reserve reserve){
+        reservationService.deleteReservationById(reserve.getId());
+        reservationService.saveReservation(reserve);
+        return new ResponseEntity<>("Successfully updated", HttpStatus.OK);
+    }
 }

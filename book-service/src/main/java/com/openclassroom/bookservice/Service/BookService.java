@@ -1,5 +1,6 @@
 package com.openclassroom.bookservice.Service;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,10 +21,6 @@ public class BookService {
 
     public Optional<Books> findByIsbn(String isbn) {
         return repository.findByIsbn(isbn);
-    }
-
-    public Optional<Books> findByPublisher(String publisher) {
-        return repository.findByPublisher(publisher);
     }
 
     public List<Books> findByAuthorsByKeyWord(String author) {
@@ -55,5 +52,10 @@ public class BookService {
     }
     public void deleteById(String id) {
         repository.deleteById(id);
+    }
+
+    public void updateBook(Books book) {
+        repository.deleteById(book.getId());
+        repository.save(book);
     }
 }

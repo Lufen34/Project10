@@ -33,24 +33,20 @@
     <h1 align="center"> Reserved book(s). </h1>
     <table align="center">
         <tr>
-            <td>title</td>
-            <td>Authors</td>
-            <td>Isbn</td>
-            <td>Start</td>
-            <td>End</td>
-            <td>Actions</td>
+            <th>title</th>
+            <th>Authors</th>
+            <th>Isbn</th>
+            <th>Actions</th>
         </tr>
         <tr th:each="reserved : ${reservations}">
             <div th:if="${reserved.book}">
-            <td th:text ="${reserved.book.title}">Title</td>
-            <td th:text ="${reserved.book.authors}">Authors</td>
-            <td th:text="${reserved.book.isbn}">Isbn</td>
-            <td th:text="${reserved.begin.getTime().toGMTString()}">begin</td>
-            <td th:text="${reserved.end.getTime().toGMTString()}">end</td>
-            <td>
-                <a th:if="${reserved.book.left} > 0" th:href="@{'/reserve/accept/' + ${reserved.id}}">Accept</a>
-                <a th:href="@{'/reserve/cancel/' + ${reserved.id}}">Cancel</a>
-            </td>
+                <td th:text ="${reserved.book.title}">Title</td>
+                <td th:text ="${reserved.book.authors}">Authors</td>
+                <td th:text="${reserved.book.isbn}">Isbn</td>
+                <td>
+                    <a th:if="${reserved.user.listBooksToAcceptReservations.get(reserved.book.id)} == true" th:href="@{'/reserve/accept/' + ${reserved.id}}">Accept</a>
+                    <a th:href="@{'/reserve/cancel/' + ${reserved.id}}">Cancel</a>
+                </td>
             </div>
         </tr>
     </table>

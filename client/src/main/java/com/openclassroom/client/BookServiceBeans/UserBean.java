@@ -1,7 +1,7 @@
 package com.openclassroom.client.BookServiceBeans;
 
 
-import java.util.Objects;
+import java.util.*;
 
 public class UserBean {
     private static final long serialVersionUID = -2777427344548523655L;
@@ -12,6 +12,7 @@ public class UserBean {
     private String login;
     private String password;
 
+    private Map<String, Boolean> listBooksToAcceptReservations = new HashMap<>();
 
     public UserBean() {
         // container
@@ -63,6 +64,14 @@ public class UserBean {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Map<String, Boolean> getListBooksToAcceptReservations() {
+        return listBooksToAcceptReservations;
+    }
+
+    public void setListBooksToAcceptReservations(Map<String, Boolean> listBooksToAcceptReservations) {
+        this.listBooksToAcceptReservations = listBooksToAcceptReservations;
     }
 
     @Override

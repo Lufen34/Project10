@@ -2,14 +2,14 @@ package com.openclassrooms.oauthserver.model;
 
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Account implements UserDetails {
 
@@ -22,6 +22,8 @@ public class Account implements UserDetails {
     private String email;
     private String password;
     private ERoles role;
+    // String = Book ID  | Boolean = can accept
+    private Map<String, Boolean> listBooksToAcceptReservations = new HashMap<>();
 
     public ERoles getRole() {
         return role;
@@ -123,6 +125,14 @@ public class Account implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Map<String, Boolean> getListBooksToAcceptReservations() {
+        return listBooksToAcceptReservations;
+    }
+
+    public void setListBooksToAcceptReservations(Map<String, Boolean> listBooksToAcceptReservations) {
+        this.listBooksToAcceptReservations = listBooksToAcceptReservations;
     }
 
     @Override

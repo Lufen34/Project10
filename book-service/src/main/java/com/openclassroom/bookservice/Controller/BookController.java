@@ -38,11 +38,6 @@ public class BookController {
     public List<Books> getBookByTitleByKeyWord(@PathVariable(value = "title") String title) {
         return bookService.findByTitleByKeyWord(title);
     }
-    
-    @RequestMapping(value = "book/publisher/{publisher}", method = RequestMethod.GET)
-    public Optional<Books> getBookByPublisher(@PathVariable(value = "publisher") String publisher) {
-        return bookService.findByPublisher(publisher);
-    }
 
     @RequestMapping(value = "book/author/{authors}", method = RequestMethod.GET)
     public List<Books> getBookByAuthorsByKeyWord(@PathVariable(value = "authors") String authors) {
@@ -137,8 +132,7 @@ public class BookController {
 
     @RequestMapping(value = "book/update", method = RequestMethod.POST)
     public ResponseEntity<String> updateBook(@RequestBody Books book) {
-        bookService.deleteById(book.getId());
-        bookService.save(book);
+        bookService.updateBook(book);
         return new ResponseEntity<>("Successfully updated", HttpStatus.OK);
     }
 

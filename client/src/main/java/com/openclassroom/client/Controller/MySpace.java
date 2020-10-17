@@ -121,10 +121,18 @@ public class MySpace {
             String nextUserEmail = bookServiceProxy.getBookById(loan.getBody().getBook().getId()).getUserListReservations().get(0).getEmail();
             batchServiceProxy.sendAcceptMail(nextUserEmail);
         }*/
-
         if (!book.getUserListReservations().isEmpty()) {
+            ResponseEntity<UserBookModel> ubm = oAuthServerProxy.getAccountByLogin(book.getUserListReservations().get(0).getLogin());
             // Send email to the first user of the list who asked.
             batchServiceProxy.sendAcceptMail(book.getUserListReservations().get(0).getEmail());
+            book.getUserListReservations().get(0).getListBooksToAcceptReservations().replace(book.getId(), true);
+            bookServiceProxy.updateBook(book);
+
+            ubm.getBody().getListBooksToAcceptReservations().replace(book.getId(), true);
+            oAuthServerProxy.updateAccount(ubm.getBody());
+            ResponseEntity<ReserveBean> reserve = bookServiceProxy.getReservationByBookAndUser(new BookAndUser(book, ubm.getBody()));
+            reserve.getBody().getUser().getListBooksToAcceptReservations().replace(book.getId(), true);
+            bookServiceProxy.updateReservation(reserve.getBody());
         }
         else {
             loan.getBody().getBook().setLeft(loan.getBody().getBook().getLeft() + 1);
@@ -139,10 +147,18 @@ public class MySpace {
     @GetMapping("/reserve/cancel/{id}")
     public String cancelReservation(@PathVariable("id") String id) {
         ResponseEntity<ReserveBean> reserve = bookServiceProxy.getReservation(id);
-        bookServiceProxy.updateBook(reserve.getBody().getBook());
-        bookServiceProxy.deleteReservation(reserve.getBody());
+        BooksBean book = bookServiceProxy.getBookById(reserve.getBody().getBook().getId());
 
-        //TODO notify and email here for the next user if not null
+        book.getUserListReservations().remove(0);
+        if(!book.getUserListReservations().isEmpty()){
+            UserBean newUser = book.getUserListReservations().get(0);
+            newUser.getListBooksToAcceptReservations().put(book.getId(), false);
+            batchServiceProxy.sendAcceptMail(newUser.getEmail());
+            oAuthServerProxy.updateAccount(newUser);
+        }
+        else { book.setLeft(book.getLeft() + 1); }
+        bookServiceProxy.updateBook(book);
+        bookServiceProxy.deleteReservation(reserve.getBody());
         return "redirect:/my_space";
     }
 
@@ -150,16 +166,22 @@ public class MySpace {
     public String acceptReservation(@PathVariable("id") String id) {
         ResponseEntity<ReserveBean> reserve = bookServiceProxy.getReservation(id);
         LoanBean loan = new LoanBean();
+        ResponseEntity<UserBookModel> ubm = oAuthServerProxy.getAccountByLogin(reserve.getBody().getUser().getLogin());
+        BooksBean book = bookServiceProxy.getBookById(reserve.getBody().getBook().getId());
 
         loan.setBook(reserve.getBody().getBook());
-        loan.setUser(reserve.getBody().getUser());
+        loan.setUser(ubm.getBody());
         loan.setBegin(new GregorianCalendar());
         GregorianCalendar end = new GregorianCalendar();
         end.add(Calendar.DAY_OF_MONTH, 14);
         loan.setEnd(end);
 
+        ubm.getBody().getListBooksToAcceptReservations().remove(reserve.getBody().getBook().getId());
+        book.getUserListReservations().remove(ubm.getBody());
+        oAuthServerProxy.updateAccount(ubm.getBody());
         bookServiceProxy.registerLoan(loan);
         bookServiceProxy.deleteReservation(reserve.getBody());
+        bookServiceProxy.updateBook(book);
         return "redirect:/my_space";
     }
 }

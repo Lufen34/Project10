@@ -8,7 +8,6 @@ public class BooksBean implements Serializable
     private static final long serialVersionUID = 1L;
     private String id;
     private String authors;
-    private String publisher;
     private String title;
     private String isbn;
     private int    stock;
@@ -34,14 +33,6 @@ public class BooksBean implements Serializable
 
     public void setAuthors(String author) {
         this.authors = author;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
     }
 
     public String getTitle() {
@@ -85,11 +76,11 @@ public class BooksBean implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BooksBean booksBean = (BooksBean) o;
-        return id.equals(booksBean.id) && authors.equals(booksBean.authors) && Objects.equals(publisher, booksBean.publisher) && title.equals(booksBean.title) && isbn.equals(booksBean.isbn);
+        return id.equals(booksBean.id) && authors.equals(booksBean.authors) && title.equals(booksBean.title) && isbn.equals(booksBean.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, authors, publisher, title, isbn);
+        return Objects.hash(id, authors, title, isbn);
     }
 }

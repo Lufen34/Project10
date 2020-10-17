@@ -188,8 +188,6 @@ public class ClientController {
         GregorianCalendar end = new GregorianCalendar();
         end.add(Calendar.DAY_OF_MONTH, 14);
         reserve.setEnd(end);
-        reserve.setBook(book);
-        reserve.setUser(user.getBody());
 
         var a = bookServiceProxy.getReservationByUserId(user.getBody().getId());
 
@@ -199,9 +197,13 @@ public class ClientController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        bookServiceProxy.addReservation(reserve);
+        user.getBody().getListBooksToAcceptReservations().put(book.getId(), false);
+        oAuthServerProxy.updateAccount(user.getBody());
         book.getUserListReservations().add(user.getBody());
         bookServiceProxy.updateBook(book);
+        reserve.setBook(book);
+        reserve.setUser(user.getBody());
+        bookServiceProxy.addReservation(reserve);
         return "successful_reserve";
     }
 }
