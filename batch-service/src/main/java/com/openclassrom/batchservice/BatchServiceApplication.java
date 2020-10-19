@@ -6,14 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -27,6 +36,8 @@ import java.util.List;
 @EnableFeignClients("com.openclassrom.batchservice")
 @EnableScheduling
 @EnableEurekaClient
+@EnableDiscoveryClient
+@Controller
 public class BatchServiceApplication implements CommandLineRunner {
 
 	@Autowired
@@ -57,7 +68,7 @@ public class BatchServiceApplication implements CommandLineRunner {
 		return loanToRemind;
 	}
 
-	@Scheduled(fixedRate = 2000) // envoie de mail tout les 2 secondes, on peut changer le paramètre en la valeur que l'on souhaite
+	@Scheduled(cron = "* * */336 * * ?") // Send every 2 weeks (336hours)
 	public void ReminderMessage() throws MessagingException { // Il faut Dé-commenter le code dans run et ajouter un param String Email lorsque la demonstration sera fini
 		MimeMessage mailMessage = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true);;
@@ -70,6 +81,22 @@ public class BatchServiceApplication implements CommandLineRunner {
 				"You can choose to extend your loan, in other case you are invited to return the book at the date mentionned in your personnal space.\n\n\n" +
 				"Fondly yours, the OPC Library team.", true);
 		javaMailSender.send(mailMessage);
+	}
+
+	@PostMapping("sendAcceptMail/")
+	public ResponseEntity<String> sendAcceptMail(@RequestBody String email) throws MessagingException {
+		MimeMessage mailMessage = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true);;
+		//SimpleMailMessage mailMessage = new SimpleMailMessage();
+		helper.setTo(email);
+		helper.setSubject("Openclassroom Library Reminder");
+		helper.setFrom("project7school@outlook.com");
+		helper.setText("Dear user,\n\n" +
+				"We would like to announce you that you have 2 open days to accept the requested book.\n"+
+				"You can choose to accept your reservation, otherwise you are invited to cancel the reservation of the book in your personnal space.\n\n\n" +
+				"Fondly yours, the OPC Library team.", true);
+		javaMailSender.send(mailMessage);
+		return new ResponseEntity<String>("Email sent successfully.", HttpStatus.OK);
 	}
 
 	@Override

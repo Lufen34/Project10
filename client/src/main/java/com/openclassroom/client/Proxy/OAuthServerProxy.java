@@ -17,5 +17,7 @@ public interface OAuthServerProxy {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     ResponseEntity<String> register(@RequestBody UserBean userBean);
     @GetMapping(value = "/account/{login}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserBookModel> getAccountByLogin(@PathVariable("login") String login);
+    ResponseEntity<UserBookModel> getAccountByLogin(@PathVariable("login") String login);
+    @PostMapping(value = "/account/update")
+    ResponseEntity<String> updateAccount(@RequestBody UserBean account);
 }

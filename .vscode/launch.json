@@ -1,0 +1,64 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ConfigServerApplication<config-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassroom.configserver.ConfigServerApplication",
+            "projectName": "config-server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaServerApplication<eureka-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassroom.eurekaserver.EurekaServerApplication",
+            "projectName": "eureka-server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayServerApplication<gateway-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassrooms.gatewayserver.GatewayServerApplication",
+            "projectName": "gateway-server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-OauthServerApplication<oauth-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassrooms.oauthserver.OauthServerApplication",
+            "projectName": "oauth-server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<book-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassroom.bookservice.Application",
+            "projectName": "book-service",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ClientApplication<client>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassroom.client.ClientApplication",
+            "projectName": "client",
+            "args": ""
+        }
+    ]
+}

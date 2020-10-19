@@ -2,6 +2,7 @@ package com.openclassroom.client.BookServiceBeans;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 public class LoanBean {
     private String      id;
@@ -62,5 +63,18 @@ public class LoanBean {
 
     public void setEnd(GregorianCalendar end) {
         this.end = end;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoanBean loanBean = (LoanBean) o;
+        return id.equals(loanBean.id) && book.equals(loanBean.book) && user.equals(loanBean.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, book, user);
     }
 }

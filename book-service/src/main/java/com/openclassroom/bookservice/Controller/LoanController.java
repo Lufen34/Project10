@@ -1,7 +1,9 @@
 package com.openclassroom.bookservice.Controller;
 
+import com.openclassroom.bookservice.Model.BookAndUser;
 import com.openclassroom.bookservice.Model.Books;
 import com.openclassroom.bookservice.Model.Loan;
+import com.openclassroom.bookservice.Model.User;
 import com.openclassroom.bookservice.Service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +23,9 @@ public class LoanController {
     @Autowired
     private LoanService loanService;
 
-    @PostMapping("/reserve")
+    @PostMapping("/rent")
     public ResponseEntity<String> registerLoan(@RequestBody Loan loan) {
-        if (loanService.findByBook(loan.getBook()) == null)
+        if (loanService.findByBookId(loan.getBook().getId()) == null)
             loanService.save(loan);
         else
             return new ResponseEntity<>("You have already loaned this book", HttpStatus.BAD_REQUEST);
@@ -50,5 +54,16 @@ public class LoanController {
     @RequestMapping(value = "/loans/all", method = RequestMethod.POST)
     public List<Loan> getALlLoans(){
         return loanService.findAll();
+    }
+
+    @PostMapping("/loan/delete/")
+    public ResponseEntity<String> deleteLoan(@RequestBody Loan loan) {
+        loanService.delete(loan);
+        return new ResponseEntity<String>("Loan successfully deleted.", HttpStatus.OK);
+    }
+
+    @PostMapping("/loan/book/")
+    public ResponseEntity<Loan> getLoanByBookAndUser(@Valid @RequestBody BookAndUser entity) {
+        return new ResponseEntity<Loan>(loanService.findByBookAndUser(entity.getBook(), entity.getUser()), HttpStatus.OK);
     }
 }
