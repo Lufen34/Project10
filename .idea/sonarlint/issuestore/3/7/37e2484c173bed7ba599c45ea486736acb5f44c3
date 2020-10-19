@@ -1,0 +1,26 @@
+
+e
+java:S44889"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(–Ë›ı8è›—›Ğ.
+L
+java:S3740L"/Provide the parametrized type for this generic.(È™àÊ8è›—›Ğ.
+i
+java:S2259¼"FA "NullPointerException" could be thrown; "getBody()" can return null.(µ‘üüÿÿÿÿ8Ô“ËŸĞ.
+W	java:S125"<This block of commented-out lines of code should be removed.(Î×˜ßùÿÿÿÿ
+a
+java:S1192="FDefine a constant instead of duplicating this literal "books" 4 times.(òÇ‡Ñúÿÿÿÿ
+A
+java:S2629q"$Invoke method(s) only conditionally.(ÆšÈ8è›—›Ğ.
+c	java:S100J"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚¿¹¨
+h	java:S100c"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şåÖˆúÿÿÿÿ
+N
+java:S1135Â"2Complete the task associated to this TODO comment.(èëÕ’ÿÿÿÿÿ
+Q	java:S125M"<This block of commented-out lines of code should be removed.(«›ü
+s
+java:S1192p"^Define a constant instead of duplicating this literal "=============================" 4 times.(éÓÛq
+j
+java:S44884"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Óäüêüÿÿÿÿ8è›—›Ğ.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¹±Ø¦
+i
+java:S2259Z"GA "NullPointerException" could be thrown; "getFirst()" can return null.(ü›’ ùÿÿÿÿ8è›—›Ğ.
+d
+java:S2259º"FA "NullPointerException" could be thrown; "getBody()" can return null.(·Ç¬Ä8Œ¥¦ŸĞ.

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My_space</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div th:replace="frag/header :: header"> </div>
+<h1 align="center"> Rented book(s). </h1>
+<div class="tab">
+    <table align="center">
+        <tr>
+            <td>title</td>
+            <td>Authors</td>
+            <td>Isbn</td>
+            <td>Start</td>
+            <td>End</td>
+            <td>Actions</td>
+        </tr>
+        <tr th:each="loan : ${loans}">
+            <td th:text ="${loan.book.title}">Title</td>
+            <td th:text ="${loan.book.authors}">Authors</td>
+            <td th:text="${loan.book.isbn}">Isbn</td>
+            <td th:text="${loan.begin.getTime().toGMTString()}">begin</td>
+            <td th:text="${loan.end.getTime().toGMTString()}">end</td>
+            <td>
+                <a th:href="@{'/loan/extend/' + ${loan.id}}">Extend</a>
+            </td>
+            <td>
+                <div class="wrong">
+                    <p> Date expired, impossible to extend.</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
