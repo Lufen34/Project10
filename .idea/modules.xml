@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Project10.iml" filepath="$PROJECT_DIR$/.idea/Project10.iml" />
       <module fileurl="file://$PROJECT_DIR$/batch-service/batch-service.iml" filepath="$PROJECT_DIR$/batch-service/batch-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/book-service/book-service.iml" filepath="$PROJECT_DIR$/book-service/book-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />

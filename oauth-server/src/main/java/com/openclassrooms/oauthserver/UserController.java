@@ -54,4 +54,12 @@ public class UserController {
                 return new ResponseEntity<>(accountService.findByLogin(login), HttpStatus.OK);
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+
+    @PostMapping(value = "/account/update")
+    public ResponseEntity<String> updateAccount(@RequestBody Account account) {
+        account.setRole(ERoles.USER);
+        account.getAuthorities().add(new Authorities(ERoles.USER));
+        accountService.updateAccount(account);
+        return new ResponseEntity<String>("Successfully updated.", HttpStatus.OK);
+    }
 }

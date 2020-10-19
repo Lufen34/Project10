@@ -36,4 +36,9 @@ public class AccountService {
     public Account findByEmail(String email) {
         return repository.findByEmail(email);
     }
+
+    public void updateAccount(Account account){
+        repository.deleteById(account.getId());
+        repository.save(account);
+    }
 }
