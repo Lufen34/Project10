@@ -14,9 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
 import java.util.List;
 
 @Controller
@@ -34,6 +37,12 @@ public class MySpace {
     private Calendar today = Calendar.getInstance();
 
     private static Logger logger = LoggerFactory.getLogger(MySpace.class);
+
+    private static Calendar today = Calendar.getInstance();
+
+    public MySpace() {
+        today.setTime(new Date());
+    }
 
     @GetMapping("/my_space")
     public String getSpace(Model model, @CookieValue("access_token") Cookie cookie){
@@ -90,14 +99,50 @@ public class MySpace {
         return"my_space_already_extended";
     }
 
+    @GetMapping("/my_space_expired_date")
+    public String getSpaceExpiredDateError(Model model, @CookieValue("access_token") Cookie cookie){
+        String login = CookieUtility.getLoginFromJWT(cookie.getValue());
+
+        ResponseEntity<UserBookModel> res = oAuthServerProxy.getAccountByLogin(login);
+
+        UserBookModel user = res.getBody();
+
+        logger.warn("=====================================");
+        logger.warn(user.getEmail());
+        logger.warn("=====================================");
+
+        ResponseEntity<List<LoanBean>> response = bookServiceProxy.getLoans(user.getEmail());
+        List<LoanBean> loans = response.getBody();
+
+        model.addAttribute("loans", loans);
+        return"my_space_expired_date";
+    }
+
     @GetMapping("/loan/extend/{id}")
     public String extendLoan(@PathVariable("id")String id) {
+        today.setTime(new Date());
         logger.warn("======================");
         logger.warn(bookServiceProxy.getLoan(id).toString());
         logger.warn("======================");
 
         ResponseEntity<LoanBean> res  = bookServiceProxy.getLoan(id);
         LoanBean loan = res.getBody();
+
+        /* TESTING */
+        /*
+        loan.getEnd().setTime(Date.from(
+                LocalDate.of(2019, 4, 14)
+                        .atStartOfDay(ZoneId.of("Europe/Dublin"))
+                        .toInstant()
+        ));
+
+        bookServiceProxy.updateLoan(loan);
+        */
+        /* END OF TESTING */
+
+        if(today.after(loan.getEnd())) {
+            return "redirect:/my_space_expired_date";
+        }
 
         if (!loan.isExtended()) {
             loan.getEnd().add(Calendar.DAY_OF_MONTH, 14);

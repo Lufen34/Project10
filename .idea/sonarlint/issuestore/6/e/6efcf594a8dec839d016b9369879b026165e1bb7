@@ -1,0 +1,14 @@
+
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ž‰Ç?
+N
+java:S3655("3Call "loan.isPresent()" before accessing the value.(«Š€Äûÿÿÿÿ
+a
+java:S1128"FRemove this unused import 'com.openclassroom.bookservice.Model.Books'.(–½­Áýÿÿÿÿ
+`
+java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‚Ç¾Ø
+o
+java:S2293""YReplace the type specification in this constructor call with the diamond operator ("<>").(–×ò¤
+t
+java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(«Š€Äûÿÿÿÿ
+`
+java:S44882"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(è€ïú

@@ -1,0 +1,30 @@
+
+`
+java:S4488="JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‚Ç¾Ø
+^
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(şÕİ²
+^
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¦Â¦
+`
+java:S44881"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"( ®š
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ë—ŞÖşÿÿÿÿ
+c
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¤Õ¡Àûÿÿÿÿ
+c
+java:S44887"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¦Ìİ›ÿÿÿÿÿ
+^
+java:S4488("HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¹âüŠ
+J
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ
+c
+java:S4488%"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¨ƒ³Üıÿÿÿÿ
+e
+java:S4488."JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‘´ú²ûÿÿÿÿ
+e
+java:S4488+"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(€³Êúÿÿÿÿ
+e
+java:S44884"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(”õŒƒıÿÿÿÿ
+c
+java:S4488""HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(˜Ëıûÿÿÿÿ
+^
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(æÙìë
