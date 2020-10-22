@@ -1,20 +1,25 @@
 package com.openclassroom.bookservice.Controller;
 
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import com.openclassroom.bookservice.Model.BookAndUser;
-import com.openclassroom.bookservice.Model.Books;
 import com.openclassroom.bookservice.Model.Loan;
-import com.openclassroom.bookservice.Model.User;
 import com.openclassroom.bookservice.Service.LoanService;
+
+import org.bson.internal.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.awt.print.Book;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "library/", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,7 +39,7 @@ public class LoanController {
 
     @RequestMapping(value = "/loans", method = RequestMethod.POST)
     public ResponseEntity<List<Loan>> getLoans(@RequestBody String email) {
-        List<Loan> loans = loanService.findAllLoanFromUser(email);
+        List<Loan> loans = loanService.findAllLoanFromUser(arr.toString());
         return new ResponseEntity<List<Loan>>(loans, HttpStatus.OK);
     }
 

@@ -1,6 +1,5 @@
 package com.openclassrooms.oauthserver.security;
 
-import com.netflix.ribbon.proxy.annotation.Http;
 import com.openclassrooms.oauthserver.service.AccountDetailsServiceImpl;
 import com.openclassrooms.oauthserver.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;

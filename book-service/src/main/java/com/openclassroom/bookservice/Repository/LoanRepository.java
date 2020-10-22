@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.openclassroom.bookservice.Model.Books;
 import com.openclassroom.bookservice.Model.Loan;
-import com.openclassroom.bookservice.Model.User;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

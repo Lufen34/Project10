@@ -4,13 +4,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import javax.print.attribute.standard.Media;
-
 import com.openclassroom.bookservice.Model.Books;
-import com.openclassroom.bookservice.Model.Loan;
 import com.openclassroom.bookservice.Model.User;
 import com.openclassroom.bookservice.Service.BookService;
-//import com.openclassroom.bookservice.Service.UserService;
 import com.openclassroom.bookservice.Service.LoanService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,34 +85,6 @@ public class BookController {
         return ResponseEntity.created(location).build();
     }
 
-    // TO-DO add a borrower only if the book is in stock (IF IT HIS the microservice's job) (should be the web app)
-    /*@RequestMapping(value = "book/{bookId}/borrower/add", method = RequestMethod.POST)
-    public ResponseEntity<Loan> addBorrower(@PathVariable(name = "bookId") String bookId, @RequestBody User user) {
-        Loan loan;
-        if (user == null) {
-            return ResponseEntity.noContent().build();
-        }
-
-        if (userService.findByName(user.getName()) == null)
-            userService.save(user);
-        
-        if (bookService.findById(bookId).isPresent()) {
-            loan = new Loan(bookService.findById(bookId).get(), user);
-            loanService.save(loan);
-
-            URI location = ServletUriComponentsBuilder
-                                .fromCurrentContextPath()
-                                .path("/{id}")
-                                .buildAndExpand(loan.getId())
-                                .toUri();
-            return ResponseEntity.created(location).build();
-        }
-
-        else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-*/
     // Working fine (done by strict User name matching) and can delete only if one of the same entity exists.
     @RequestMapping(value = "book/{bookId}/borrower/delete", method = RequestMethod.POST)
     public void deleteBorrower(@RequestBody User user){

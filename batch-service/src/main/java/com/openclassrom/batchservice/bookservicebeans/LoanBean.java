@@ -1,7 +1,5 @@
 package com.openclassrom.batchservice.bookservicebeans;
 
-import com.openclassrom.batchservice.bookservicebeans.*;
-
 import java.util.GregorianCalendar;
 
 public class LoanBean {

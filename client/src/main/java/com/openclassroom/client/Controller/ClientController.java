@@ -1,25 +1,35 @@
 package com.openclassroom.client.Controller;
 
-import com.openclassroom.client.BookServiceBeans.*;
-import com.openclassroom.client.Proxy.BatchServiceProxy;
-import com.openclassroom.client.Proxy.BookServiceProxy;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import com.openclassroom.client.BookServiceBeans.BookAndUser;
+import com.openclassroom.client.BookServiceBeans.BooksBean;
+import com.openclassroom.client.BookServiceBeans.LoanBean;
+import com.openclassroom.client.BookServiceBeans.ReserveBean;
+import com.openclassroom.client.BookServiceBeans.UserBean;
+import com.openclassroom.client.BookServiceBeans.UserBookModel;
+import com.openclassroom.client.Proxy.BookServiceProxy;
 import com.openclassroom.client.Proxy.OAuthServerProxy;
 import com.openclassroom.client.utilities.CookieUtility;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
