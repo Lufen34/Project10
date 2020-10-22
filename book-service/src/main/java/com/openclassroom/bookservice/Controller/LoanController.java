@@ -39,7 +39,7 @@ public class LoanController {
 
     @RequestMapping(value = "/loans", method = RequestMethod.POST)
     public ResponseEntity<List<Loan>> getLoans(@RequestBody String email) {
-        List<Loan> loans = loanService.findAllLoanFromUser(arr.toString());
+        List<Loan> loans = loanService.findAllLoanFromUser(email);
         return new ResponseEntity<List<Loan>>(loans, HttpStatus.OK);
     }
 
