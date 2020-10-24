@@ -1,4 +1,4 @@
-package com.openclassrom.batchservice.bookservicebeans;
+package com.openclassroom.batchservice.bookservicebeans;
 
 import java.util.GregorianCalendar;
 

@@ -1,9 +1,9 @@
-package com.openclassrom.batchservice.proxy;
+package com.openclassroom.batchservice.proxy;
 
 
-import com.openclassrom.batchservice.bookservicebeans.BooksBean;
-import com.openclassrom.batchservice.bookservicebeans.LoanBean;
-import com.openclassrom.batchservice.bookservicebeans.UserBean;
+import com.openclassroom.batchservice.bookservicebeans.BooksBean;
+import com.openclassroom.batchservice.bookservicebeans.LoanBean;
+import com.openclassroom.batchservice.bookservicebeans.UserBean;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.openclassrom.batchservice;
+package com.openclassroom.batchservice;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,8 +8,8 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import com.openclassrom.batchservice.bookservicebeans.LoanBean;
-import com.openclassrom.batchservice.proxy.BookServiceProxy;
+import com.openclassroom.batchservice.bookservicebeans.LoanBean;
+import com.openclassroom.batchservice.proxy.BookServiceProxy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @SpringBootApplication
-@EnableFeignClients("com.openclassrom.batchservice")
+@EnableFeignClients("com.openclassroom.batchservice")
 @EnableScheduling
 @EnableEurekaClient
 @EnableDiscoveryClient

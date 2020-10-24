@@ -2,17 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/containerd" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/docker-ce" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/go/src/github.com/containerd/containerd" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/go/src/github.com/docker/docker-ce" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/go/src/github.com/docker/libnetwork" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/go/src/github.com/opencontainers/runc" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/libnetwork" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/moby" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/moby/.gopath/src/github.com/docker/docker" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/runc" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/docker-git/src/tini" vcs="Git" />
   </component>
 </project>
