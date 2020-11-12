@@ -1,4 +1,4 @@
-package com.openclassrom.batchservice.bookservicebeans;
+package com.openclassroom.batchservice.bookservicebeans;
 
 public class UserBean {
     private static final long serialVersionUID = -2777427344548523655L;

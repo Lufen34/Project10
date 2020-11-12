@@ -1,4 +1,4 @@
-package com.openclassrom.batchservice;
+package com.openclassroom.batchservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

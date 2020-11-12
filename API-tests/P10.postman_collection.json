@@ -1,0 +1,1196 @@
+{
+	"info": {
+		"_postman_id": "c1aae267-5274-4d69-95b0-5022e393dc82",
+		"name": "P10",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get available books in stocks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "295ff33a-3e99-46dd-a742-eb687c9beed0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"ID founded\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].id).to.eql(\"5ec4417a5c0b684cd8646d08\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/stock",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"stock"
+					]
+				},
+				"description": "#Usage\r\n\r\nThis request allow the server to return the available books in stock in the database. **(Stock greater than 0)**."
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of books by keyword in title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "314378c8-0841-4c99-b509-dcfb4bceb48c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test property\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].title).to.eql(\"Android in Action, Second Edition\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/book/title/{{book.title}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"title",
+						"{{book.title}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "# Usage\r\n\r\nThis request allows the user to retrieve a book from keywords in the title as parameters."
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of books by Authors name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34a52e4f-6644-4312-a980-a819d4885b7f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test property\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].authors).to.eql(\"W. Frank Ableson,Robi Sen\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/author/{{book.author}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"author",
+						"{{book.author}}"
+					]
+				},
+				"description": "# Usage\r\n\r\nThis request allows the user to retrieve a book from keywords from author as parameters."
+			},
+			"response": []
+		},
+		{
+			"name": "Get books by ISBN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f50ad567-fa71-44a3-a0d3-dde1e53755ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.isbn).to.eql('1930110529');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/isbn/{{book.isbn}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"isbn",
+						"{{book.isbn}}"
+					]
+				},
+				"description": "# Usage\r\n\r\nFind the book with the exact ISBN"
+			},
+			"response": []
+		},
+		{
+			"name": "Get books by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc7978bd-2765-417e-87a7-b7190260104b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql('5ec4417a5c0b684cd8646d0e');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/id/{{book.id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"id",
+						"{{book.id}}"
+					]
+				},
+				"description": "# Usage\r\n\r\nAllow user to retrieve books by there ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all books in DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d695dcf-322d-46c6-ae18-61d88a8e859d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						""
+					]
+				},
+				"description": "# Usage\r\n\r\nretrieve all the books added in the database"
+			},
+			"response": []
+		},
+		{
+			"name": "Add book in DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe5c891f-f6f0-43c2-93a1-801137f1a9e7",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"{{book.testId}}\",\r\n    \"authors\": \"POSTMAN TEST\",\r\n    \"title\": \"POSTMAN TEST\",\r\n    \"isbn\": \"POSTMAN TEST\",\r\n    \"stock\": 10,\r\n    \"left\": 10,\r\n    \"userListReservations\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/book/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"add"
+					]
+				},
+				"description": "# Usage\r\n\r\nallow user to add book in the db"
+			},
+			"response": []
+		},
+		{
+			"name": "Update book in DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5098ca05-5b1e-4c30-9031-da0ecaa8cde9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Successfully updated\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{book.testId}}\",\r\n    \"authors\": \"POSTMAN TEST UPDATED\",\r\n    \"title\": \"POSTMAN TEST UPDATED\",\r\n    \"isbn\": \"POSTMAN TEST UPDATED\",\r\n    \"stock\": 10,\r\n    \"left\": 10,\r\n    \"userListReservations\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/book/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"update"
+					]
+				},
+				"description": "# Usage\r\n\r\nTo replace in the futur as a PUT request"
+			},
+			"response": []
+		},
+		{
+			"name": "Add loan in DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5300abd4-7dc1-4591-8db4-0dd10a411cee",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Successfully registered\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"{{loan.id}}\",\r\n    \"book\": {\r\n        \"id\" : \"{{book.testId}}\",\r\n        \"authors\": \"POSTMAN TEST\",\r\n        \"title\": \"POSTMAN TEST\",\r\n        \"isbn\": \"POSTMAN TEST\",\r\n        \"stock\": 10,\r\n        \"left\": 10,\r\n        \"userListReservations\": []\r\n    },\r\n    \"extended\": false,\r\n    \"user\": {\r\n        \"id\" : \"{{user.id}}\",\r\n        \"name\": \"phillipe\",\r\n        \"address\": \"11 john street\",\r\n        \"email\": \"phillipe@yahoomail.com\",\r\n        \"login\": \"phillipe34\",\r\n        \"password\": \"$2a$10$E3QtSnhbuZ/UuyVfPTfqzOSmLLt0nm6qfRQ4pqlCdIQQF.JdWexCi\",\r\n        \"rented\": [],\r\n        \"listBooksToAcceptReservations\": {}\r\n    },\r\n    \"_class\": \"com.openclassroom.bookservice.Model.Loan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/rent",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"rent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of all loans existing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cbadf5b-e535-4de8-b5e6-5dbdbbec1168",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].id).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/loans/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"loans",
+						"all"
+					]
+				},
+				"description": "# Usage\r\n\r\nreturns all the loans existing in the db\r\n\r\nneeds to be replaced as a GET request"
+			},
+			"response": []
+		},
+		{
+			"name": "List of loans of the user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f268a7d7-1d1f-4ae7-a063-2cd63dd469a9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"All email keys matches tested email value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.warn();\r",
+							"    for(i = 1; i < Object.keys(jsonData).length; i++) {\r",
+							"        pm.expect(jsonData[i].user.email).to.eql(pm.variables.get('book.testEmail'));\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{book.testEmail}}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/loans",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"loans"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "# TODO \r\n\r\nchange http request type in the futur, retrieve loans from the user's email in the body."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete loan from db",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8067c1b9-3403-4c3f-b5a3-1705b96bd69f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Loan successfully deleted.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{loan.id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/loan/delete/",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"loan",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete book by DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce59ecf0-9467-4a46-b0dc-4c974d026fbb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/delete/{{book.testId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"delete",
+						"{{book.testId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add reservation in db",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "732f32aa-0f48-4dbd-8280-023996c17c6f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"{{reservation.id}}\",\r\n    \"book\": {\r\n        \"id\" : \"{{book.testId}}\",\r\n        \"authors\": \"POSTMAN TEST\",\r\n        \"title\": \"POSTMAN TEST\",\r\n        \"isbn\": \"POSTMAN TEST\",\r\n        \"stock\": 10,\r\n        \"left\": 10,\r\n        \"userListReservations\": []\r\n    },\r\n    \"extended\": false,\r\n    \"user\": {\r\n        \"id\" : \"{{user.id}}\",\r\n        \"name\": \"phillipe\",\r\n        \"address\": \"11 john street\",\r\n        \"email\": \"phillipe@yahoomail.com\",\r\n        \"login\": \"phillipe34\",\r\n        \"password\": \"$2a$10$E3QtSnhbuZ/UuyVfPTfqzOSmLLt0nm6qfRQ4pqlCdIQQF.JdWexCi\",\r\n        \"rented\": [],\r\n        \"listBooksToAcceptReservations\": {}\r\n    },\r\n    \"_class\": \"com.openclassroom.bookservice.Model.Loan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/book/reservation/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"reservation",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reservations by user's ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "972d0282-9b81-48b8-9ed3-070cb922063d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"All email keys matches tested email value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.warn();\r",
+							"    for(i = 1; i < Object.keys(jsonData).length; i++) {\r",
+							"        pm.expect(jsonData[i].user.email).to.eql(pm.variables.get('book.testEmail'));\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/reservations/{{user.id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"reservations",
+						"{{user.id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reservation by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8012f815-f25b-4a3b-aad4-7109737f8fc9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(pm.variables.get('reservation.id'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/library/book/reservation/{{reservation.id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"reservation",
+						"{{reservation.id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Reservation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f98f438-0418-47c0-b50b-c06c5697e95a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Successfully updated\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"{{reservation.id}}\",\r\n    \"book\": {\r\n        \"id\" : \"{{book.testId}}\",\r\n        \"authors\": \"POSTMAN TEST UPDATED\",\r\n        \"title\": \"POSTMAN TEST UPDATED\",\r\n        \"isbn\": \"POSTMAN TEST UPDATED\",\r\n        \"stock\": 10,\r\n        \"left\": 10,\r\n        \"userListReservations\": []\r\n    },\r\n    \"extended\": false,\r\n    \"user\": {\r\n        \"id\" : \"{{user.id}}\",\r\n        \"name\": \"phillipe\",\r\n        \"address\": \"11 john street\",\r\n        \"email\": \"phillipe@yahoomail.com\",\r\n        \"login\": \"phillipe34\",\r\n        \"password\": \"$2a$10$E3QtSnhbuZ/UuyVfPTfqzOSmLLt0nm6qfRQ4pqlCdIQQF.JdWexCi\",\r\n        \"rented\": [],\r\n        \"listBooksToAcceptReservations\": {}\r\n    },\r\n    \"_class\": \"com.openclassroom.bookservice.Model.Loan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/reserve/update/",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"reserve",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Reservation by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63c5d9e1-1b46-4805-9971-f7f3135925b5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Reservation successfully deleted.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{reservation.id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/library/book/reservation/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"library",
+						"book",
+						"reservation",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4abd88f1-8779-4306-a2a4-f8deae649084",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Successfully registered\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{user.id}}\",\r\n    \"name\": \"TEST POSTMAN\",\r\n    \"address\": \"TEST POSTMAN\",\r\n    \"login\": \"{{user.login}}\",\r\n    \"email\": \"TESTPOSTMAN@yahoomail.com\",\r\n    \"password\": \"$2a$10$E3QtSnhbuZ/UuyVfPTfqzOSmLLt0nm6qfRQ4pqlCdIQQF.JdWexCi\",\r\n    \"role\": \"USER\",\r\n    \"listBooksToAcceptReservations\": {\r\n    },\r\n    \"authorities\": [{\r\n        \"authority\": \"USER\"\r\n    }],\r\n    \"_class\": \"com.openclassrooms.oauthserver.model.Account\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Account by login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b474e85f-d369-433a-971e-e255a27fbb7e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.login).to.eql(pm.variables.get('user.login'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/account/{{user.login}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"account",
+						"{{user.login}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1a84b6f-bcdb-4c2d-8f9f-787262523581",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Successfully updated\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{user.id}}\",\r\n    \"name\": \"TEST POSTMAN UPDATED\",\r\n    \"address\": \"TEST POSTMAN UPDATED\",\r\n    \"login\": \"{{user.login}}\",\r\n    \"email\": \"TESTPOSTMAN@yahoomail.com\",\r\n    \"password\": \"$2a$10$E3QtSnhbuZ/UuyVfPTfqzOSmLLt0nm6qfRQ4pqlCdIQQF.JdWexCi\",\r\n    \"role\": \"USER\",\r\n    \"listBooksToAcceptReservations\": {\r\n    },\r\n    \"authorities\": [{\r\n        \"authority\": \"USER\"\r\n    }],\r\n    \"_class\": \"com.openclassrooms.oauthserver.model.Account\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/account/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"account",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4f9c9b10-02aa-4b92-a688-3464fccf7bc3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "06b5e89e-3e04-495b-9532-0204dc10b1d4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "55717c18-74b1-47fd-b909-c83fd5e16259",
+			"key": "book.title",
+			"value": "Android"
+		},
+		{
+			"id": "9b1a14aa-9457-4eaf-86f7-85c79c059881",
+			"key": "book.author",
+			"value": "Frank"
+		},
+		{
+			"id": "76875185-3c95-4bf6-a2ea-f90d0b3895bd",
+			"key": "book.isbn",
+			"value": "1930110529"
+		},
+		{
+			"id": "716c09ef-4db7-4874-950c-510a0ae8a1bd",
+			"key": "book.id",
+			"value": "5ec4417a5c0b684cd8646d0e"
+		},
+		{
+			"id": "ce51cf6e-8189-4f5f-a672-6a72f6486a8c",
+			"key": "book.testId",
+			"value": "5f8fd21c037beb70189a3804"
+		},
+		{
+			"id": "c44e22fa-1f7d-4ed0-b289-8146e2d646aa",
+			"key": "book.testEmail",
+			"value": "phillipe@yahoomail.com"
+		},
+		{
+			"id": "7c4c3f39-5912-4b7f-a184-3469c54898fd",
+			"key": "loan.id",
+			"value": "5f943e51c09ece2497a4e963"
+		},
+		{
+			"id": "a3c14122-c60d-43ae-8884-18ef979cea46",
+			"key": "user.id",
+			"value": "6ec4417a5c0b684cd8646d0f"
+		},
+		{
+			"id": "1aea60a5-ea98-4135-936d-f3b6bc791063",
+			"key": "reservation.id",
+			"value": "5f94a15dfa2e40293caef10b"
+		},
+		{
+			"id": "0f4d6786-0727-434d-9183-3b7941bfeb1f",
+			"key": "user.login",
+			"value": "testpostman"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

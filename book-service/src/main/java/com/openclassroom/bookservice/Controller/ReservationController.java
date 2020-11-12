@@ -1,7 +1,6 @@
 package com.openclassroom.bookservice.Controller;
 
 import com.openclassroom.bookservice.Model.BookAndUser;
-import com.openclassroom.bookservice.Model.Loan;
 import com.openclassroom.bookservice.Model.Reserve;
 import com.openclassroom.bookservice.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;

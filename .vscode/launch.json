@@ -59,6 +59,16 @@
             "mainClass": "com.openclassroom.client.ClientApplication",
             "projectName": "client",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-BatchServiceApplication<batch-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.openclassrom.batchservice.BatchServiceApplication",
+            "projectName": "batch-service",
+            "args": ""
         }
     ]
 }

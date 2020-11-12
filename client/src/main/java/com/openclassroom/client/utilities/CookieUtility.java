@@ -1,11 +1,12 @@
 package com.openclassroom.client.utilities;
 
-import com.auth0.jwt.JWT;
-import org.springframework.web.util.WebUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.GregorianCalendar;
+
+import com.auth0.jwt.JWT;
+
+import org.springframework.web.util.WebUtils;
 
 
 public class CookieUtility {

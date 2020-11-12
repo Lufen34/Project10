@@ -1,17 +1,25 @@
 package com.openclassroom.client.Proxy;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.openclassroom.client.BookServiceBeans.*;
+import javax.validation.Valid;
+
+import com.openclassroom.client.BookServiceBeans.BookAndUser;
+import com.openclassroom.client.BookServiceBeans.BooksBean;
+import com.openclassroom.client.BookServiceBeans.LoanBean;
+import com.openclassroom.client.BookServiceBeans.ReserveBean;
+import com.openclassroom.client.BookServiceBeans.UserBean;
 
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name = "GATEWAY-SERVER", contextId = "BOOK-SERVICE")
 @RibbonClient(name = "BOOK-SERVICE")

@@ -1,8 +1,6 @@
 package com.openclassroom.bookservice.Model;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
