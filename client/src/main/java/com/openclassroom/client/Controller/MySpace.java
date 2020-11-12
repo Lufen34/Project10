@@ -205,7 +205,6 @@ public class MySpace {
             batchServiceProxy.sendAcceptMail(newUser.getEmail());
             oAuthServerProxy.updateAccount(newUser);
         }
-        else { book.setLeft(book.getLeft() + 1); }
         bookServiceProxy.updateBook(book);
         bookServiceProxy.deleteReservation(reserve.getBody());
         return "redirect:/my_space";
