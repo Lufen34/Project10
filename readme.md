@@ -23,7 +23,7 @@ https://mega.nz/file/kZ0VBJaT#jnkKWtzueVknPyEJhmoh1LiHJKQen76fkfFCYShOgmY
 import the docker container with the following command :
 
 ```bash
-sudo tar -c . | docker import - project7
+sudo tar -c . | docker import - project10
 ```
 
 
@@ -45,7 +45,7 @@ inside /home/Project7 use git pull in order to verify if project is updated.
 How to deploy :
 
 ```bash
-"Project7/<MICROSERVICE-YOU-WISH-TO-DEPLOY>/mvnw.cmd" package -f "Project7/<MICROSERVICE-YOU-WISH-TO-DEPLOY>/pom.xml"
+"Project10/<MICROSERVICE-YOU-WISH-TO-DEPLOY>/mvnw.cmd" package -f "Project10/<MICROSERVICE-YOU-WISH-TO-DEPLOY>/pom.xml"
 ```
 
 The snapshot will be provided inside  ***/target/MICRO-SERVICE-NAME-0.0.1-SNAPSHOT.jar***, you'll just need to execute all of them using the command :
@@ -68,4 +68,4 @@ Please make sure to execute them in the following order :
 
 https://github.com/Lufen34/Project7-config-repo 
 
-https://github.com/Lufen34/Project7/
+https://github.com/Lufen34/Project10/
